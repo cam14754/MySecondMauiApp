@@ -42,7 +42,6 @@
         <BoxView
             Grid.Row="0"
             Grid.ColumnSpan="5"
-            Margin="0,0,0,2"
             BackgroundColor="Gray"
             HeightRequest="1"
             VerticalOptions="End" />

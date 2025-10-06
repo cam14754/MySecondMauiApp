@@ -22,7 +22,7 @@ namespace MySecondMauiApp
             //Generate a rock for testing
             Rock rock = new Rock();
             rock.Name = "My Rock";
-            rock.Details = "This is the details of my rock";
+            rock.Details = "These are the details of my rock";
             rock.Image = "rock.jpg";
 
             Rocks.Add(rock);
