@@ -12,7 +12,7 @@ namespace MySecondMauiApp
 
         public MainPageViewModel()
         {
-            Title = "Rocks";
+            Title = "My Rock Collection!";
         }
 
         [RelayCommand]
