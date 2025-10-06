@@ -15,7 +15,7 @@
         ColumnDefinitions="*, *, *, *, *"
         RowDefinitions="60, * , Auto">
 
-
+        <!--  Header Buttons  -->
         <Button
             Grid.Column="0"
             Style="{StaticResource TopButton}"
@@ -51,8 +51,9 @@
             Grid.RowSpan="2"
             Grid.ColumnSpan="5"
             ItemsSource="{Binding Rocks}"
-            SelectionMode="None"
-            ZIndex="-1">
+            SelectedItem="{Binding SelectedRock}"
+            SelectionMode="Single">
+
 
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
@@ -60,7 +61,9 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Rock">
+                    <!--  TEMPLATE ROOT  -->
                     <Border
+                        x:Name="Root"
                         Margin="10"
                         HeightRequest="125"
                         Style="{StaticResource CardView}">
@@ -81,6 +84,7 @@
                                     VerticalOptions="Center"
                                     WidthRequest="110" />
                             </Border>
+
                             <VerticalStackLayout
                                 Grid.Column="1"
                                 Padding="10"
@@ -89,6 +93,19 @@
                                 <Label Style="{StaticResource MediumLabel}" Text="{Binding Details}" />
                             </VerticalStackLayout>
                         </Grid>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState Name="Normal" />
+
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="Root" Property="Border.Stroke" Value="{StaticResource Accent}" />
+                                        <Setter TargetName="Root" Property="Border.StrokeThickness" Value="5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -97,14 +114,9 @@
         <Button
             Grid.Row="2"
             Grid.ColumnSpan="5"
-            Margin="20"
-            Padding="0"
             Command="{Binding AddRockTestCommand}"
-            FontSize="70"
-            HeightRequest="100"
-            Style="{StaticResource ButtonStyle}"
-            Text="+"
-            ZIndex="1" />
+            Style="{StaticResource BigButton}"
+            Text="+" />
 
     </Grid>
 
