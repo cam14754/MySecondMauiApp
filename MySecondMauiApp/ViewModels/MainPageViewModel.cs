@@ -18,7 +18,7 @@
         {
             rock ??= new Rock();
 
-            Rock rockClone = rock.Clone();
+            Rock rockClone = rock.Copy();
 
             await Shell.Current.GoToAsync(nameof(AddEditPage), true, new Dictionary<string, object>
             {

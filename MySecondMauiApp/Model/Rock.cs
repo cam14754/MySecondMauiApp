@@ -9,7 +9,7 @@
         [ObservableProperty] private string imageString = "defaultrock.jpg";
         [ObservableProperty] private Location location;
         [ObservableProperty] private Guid iD = Guid.NewGuid();
-        public Rock Clone()
+        public Rock Copy(bool newID = false)
         {
             return new Rock
             {
@@ -17,8 +17,8 @@
                 Description = this.Description,
                 Type = this.Type,
                 ImageString = this.ImageString,
-                ID = this.ID,
-                Location = this.Location
+                Location = this.Location,
+                ID = newID ? Guid.NewGuid() : this.ID,
             };
         }
 
