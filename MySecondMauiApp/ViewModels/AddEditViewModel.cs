@@ -4,6 +4,11 @@
 
     public partial class AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation) : BaseViewModel
     {
+
+        //public AddEditViewModel() 
+        //{
+
+        //}
         RockDataService rockDataService = rockDataService;
         IGeolocation geolocation = geolocation;
 
@@ -18,11 +23,16 @@
         [ObservableProperty]
         Rock rock;
 
+        [ObservableProperty]
+        Rock rock2;
+
+
+        Rock edditingRock = new();
+
         [RelayCommand]
         public async Task Submit()
         {
-            Rock.ImageString = "rock.jpg";
-            rockDataService.AddRock(Rock);
+            rockDataService.SaveRock(Rock);
             await GoBackAsync();
         }
 

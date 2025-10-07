@@ -18,9 +18,11 @@
         {
             rock ??= new Rock();
 
+            Rock rockClone = rock.Clone();
+
             await Shell.Current.GoToAsync(nameof(AddEditPage), true, new Dictionary<string, object>
             {
-                {"Rock", rock}
+                {"Rock", rockClone}
             });
         }
 

@@ -11,28 +11,20 @@
 
         }
 
-        public void AddRock(Rock rock)
+        public void SaveRock(Rock rock)
         {
-            Rock? foundRock = null;
-            try
+            if (rock is null)
+                return;
+
+            var existingRock = Rocks.FirstOrDefault(r => r.ID == rock.ID);
+
+            if (existingRock is null)
             {
-                foundRock = Rocks.First(r => r.ID == rock.ID);
+                Rocks.Add(rock);
             }
-            catch (Exception ex)
+            else
             {
-                Debug.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (foundRock is not null)
-                {
-                    rock = foundRock;
-                }
-                else
-                {
-                    // Add a new rock
-                    Rocks.Add(rock);
-                }
+                existingRock.CopyFrom(rock);
             }
         }
 
