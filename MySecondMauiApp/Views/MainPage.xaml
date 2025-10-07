@@ -18,6 +18,8 @@
         <!--  Header Buttons  -->
         <Button
             Grid.Column="0"
+            Command="{Binding GoToAddPageNewCommand}"
+            CommandParameter="{Binding Source={x:Reference SelectedItem}, Path=SelectedItem}"
             Style="{StaticResource TopButton}"
             Text="Edit" />
         <Button
@@ -35,6 +37,8 @@
             Text="Rename" />
         <Button
             Grid.Column="4"
+            Command="{Binding DeleteRockCommand}"
+            CommandParameter="{Binding Source={x:Reference SelectedItem}, Path=SelectedItem}"
             Style="{StaticResource TopButton}"
             Text="Delete" />
 
@@ -47,6 +51,7 @@
             VerticalOptions="End" />
 
         <CollectionView
+            x:Name="SelectedItem"
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.ColumnSpan="5"
@@ -75,14 +80,14 @@
                                         Aspect="Fill"
                                         HeightRequest="110"
                                         HorizontalOptions="Center"
-                                        Source="{Binding Image}"
+                                        Source="{Binding ImageString}"
                                         VerticalOptions="Center"
                                         WidthRequest="110" />
                                 </Border>
 
                                 <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
                                     <Label Style="{StaticResource LargeLabelBold}" Text="{Binding Name}" />
-                                    <Label Style="{StaticResource MediumLabel}" Text="{Binding Details}" />
+                                    <Label Style="{StaticResource MediumLabel}" Text="{Binding Description}" />
                                     <Label Style="{StaticResource SmallLabel}" Text="{Binding ID, StringFormat='ID: {0}'}" />
                                 </VerticalStackLayout>
                             </Grid>
@@ -95,7 +100,7 @@
         <Button
             Grid.Row="2"
             Grid.ColumnSpan="5"
-            Command="{Binding GoToAddPageCommand}"
+            Command="{Binding GoToAddPageNewCommand}"
             Style="{StaticResource BigButton}"
             Text="+" />
 

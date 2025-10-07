@@ -1,32 +1,26 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MySecondMauiApp.Model;
-using MySecondMauiApp.ViewModels;
-
-namespace MySecondMauiApp
+﻿namespace MySecondMauiApp
 {
     [QueryProperty(nameof(Rock), "Rock")]
 
-    public partial class AddPageViewModel : BaseViewModel
+    public partial class AddPageViewModel(RockDataService rockDataService, IGeolocation geolocation) : BaseViewModel
     {
-        RockDataService rockDataService;
-        IGeolocation Geolocation;
-        public AddPageViewModel(RockDataService rockDataService, IGeolocation geolocation)
-        {
-            this.rockDataService = rockDataService;
-            this.Geolocation = geolocation;
-
-            rock ??= new Rock();
-            rockDataService.AssignGUID(rock);
-        }
-
-
-        //Sync Fusion
-
+        RockDataService rockDataService = rockDataService;
+        IGeolocation Geolocation = geolocation;
 
         [ObservableProperty]
         Rock rock;
 
+        [RelayCommand]
+        public async Task Submit()
+        {
+            Rock.ImageString = "rock.jpg";
+            rockDataService.AddRock(Rock);
+            await GoBackAsync();
+        }
 
-
+        public async Task GoBackAsync()
+        {
+            await Shell.Current.GoToAsync("..", true);
+        }
     }
 }

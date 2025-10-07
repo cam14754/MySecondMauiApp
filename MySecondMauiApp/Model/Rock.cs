@@ -1,11 +1,13 @@
 ﻿namespace MySecondMauiApp.Model
 {
-    public class Rock
+
+    public partial class Rock : ObservableObject
     {
-        public string Name { get; set; }
-        public string Details { get; set; }
-        public string Image { get; set; }
-        public string Location { get; set; }
-        public Guid ID { get; set; }
+        [ObservableProperty] private string name;
+        [ObservableProperty] private string description;
+        [ObservableProperty] private string type;
+        [ObservableProperty] private string imageString;
+        [ObservableProperty] private Location location;
+        [ObservableProperty] private Guid iD = Guid.NewGuid();
     }
 }

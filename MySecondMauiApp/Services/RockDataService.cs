@@ -1,7 +1,4 @@
-﻿using MySecondMauiApp.Model;
-using System.Collections.ObjectModel;
-
-namespace MySecondMauiApp
+﻿namespace MySecondMauiApp
 {
     public class RockDataService
     {
@@ -12,24 +9,41 @@ namespace MySecondMauiApp
 
         }
 
-
-        public void AddTestRock()
-        {
-            Rock rock = new()
-            {
-                Name = "My Rock",
-                Details = "These are the details of my rock",
-                Image = "rock.jpg",
-            };
-            AssignGUID(rock);
-            Rocks.Add(rock);
-        }
-
         public void AssignGUID(Rock rock)
         {
             rock ??= new Rock();
 
-            rock.ID = new Guid();
+            rock.ID = Guid.NewGuid();
+        }
+
+        public void AddRock(Rock rock)
+        {
+            Rock? foundRock = null;
+            try
+            {
+                foundRock = Rocks.First(r => r.ID == rock.ID);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (foundRock is not null)
+                {
+                    rock = foundRock;
+                }
+                else
+                {
+                    // Add a new rock
+                    Rocks.Add(rock);
+                }
+            }
+        }
+
+        public bool DeleteRock(Rock rock)
+        {
+            return Rocks.Remove(rock);
         }
     }
 }

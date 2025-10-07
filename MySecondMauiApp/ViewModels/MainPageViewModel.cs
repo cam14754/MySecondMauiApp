@@ -1,11 +1,6 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using MySecondMauiApp.Model;
-using MySecondMauiApp.ViewModels;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-
-namespace MySecondMauiApp
+﻿namespace MySecondMauiApp
 {
+
     public partial class MainPageViewModel : BaseViewModel
     {
         private readonly RockDataService rockDataService;
@@ -19,19 +14,33 @@ namespace MySecondMauiApp
         }
 
         [RelayCommand]
-        public void AddRockTest()
+        async Task GoToAddPageNew(Rock? rock = null)
         {
-            Debug.WriteLine("AddRockTest");
-            rockDataService.AddTestRock();
+            rock ??= new Rock();
+
+            await Shell.Current.GoToAsync(nameof(AddPage), true, new Dictionary<string, object>
+            {
+                {"Rock", rock}
+            });
         }
 
         [RelayCommand]
-        async Task GoToAddPage()
+        async Task DeleteRockAsync(Rock? rock)
         {
-            await Shell.Current.GoToAsync(nameof(AddPage), true, new Dictionary<string, object>
+            if (rockDataService.DeleteRock(rock))
             {
-                {"Rock", new Rock()}
-            });
+                await Shell.Current.DisplayAlert(
+                    "Rock Deleted",
+                    "Your rock has been deleted successfully!",
+                    "OK");
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert(
+                    "No Rock Deleted",
+                    "Your rock was not successfully deleted or was not selected",
+                    "OK");
+            }
         }
     }
 }

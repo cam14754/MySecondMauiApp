@@ -9,13 +9,28 @@
     BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground},
                                       Dark={StaticResource DarkBackground}}">
     <VerticalStackLayout>
-        <Label Text="Add Rock Form!!!!!" />
 
-        <Label Text="Rock Name" />
+        <Label Style="{StaticResource LargeLabel}" Text="Rock Name:" />
         <Entry Text="{Binding Rock.Name}" />
 
-        <Label Text="Rock ID:" />
+        <Label Style="{StaticResource LargeLabel}" Text="Rock Type:" />
+        <Entry Text="{Binding Rock.Type}" />
+
+        <Label Style="{StaticResource LargeLabel}" Text="Rock Description:" />
+        <Entry Text="{Binding Rock.Description}" />
+
+        <Label Style="{StaticResource LargeLabel}" Text="Rock ID:" />
         <Label Text="{Binding Rock.ID}" />
+
+        <Label Style="{StaticResource LargeLabel}" Text="Image:" />
+        <Image
+            HeightRequest="200"
+            Source="rock.jpg"
+            WidthRequest="200" />
+        <Button
+            Command="{Binding SubmitCommand}"
+            Style="{StaticResource ButtonStyle}"
+            Text="Submit" />
 
 
 

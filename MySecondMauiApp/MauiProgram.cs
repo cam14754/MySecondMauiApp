@@ -19,7 +19,7 @@ namespace MySecondMauiApp
             builder.Services.AddTransient<AddPageViewModel>();
 
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<AddPage>();
+            builder.Services.AddTransient<AddPage>();
 
 
             builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
