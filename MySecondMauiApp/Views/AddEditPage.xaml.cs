@@ -1,8 +1,8 @@
 namespace MySecondMauiApp
 {
-    public partial class AddPage : ContentPage
+    public partial class AddEditPage : ContentPage
     {
-        public AddPage(AddPageViewModel viewModel)
+        public AddEditPage(AddEditViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = viewModel;

@@ -18,7 +18,7 @@
         {
             rock ??= new Rock();
 
-            await Shell.Current.GoToAsync(nameof(AddPage), true, new Dictionary<string, object>
+            await Shell.Current.GoToAsync(nameof(AddEditPage), true, new Dictionary<string, object>
             {
                 {"Rock", rock}
             });
@@ -38,7 +38,7 @@
             {
                 await Shell.Current.DisplayAlert(
                     "No Rock Deleted",
-                    "Your rock was not successfully deleted or was not selected",
+                    "Your rock was not successfully deleted or was not selected.",
                     "OK");
             }
         }

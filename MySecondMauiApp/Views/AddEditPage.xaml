@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="MySecondMauiApp.AddPage"
+    x:Class="MySecondMauiApp.AddEditPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:MySecondMauiApp.Model"
     xmlns:viewmodel="clr-namespace:MySecondMauiApp"
-    x:DataType="viewmodel:AddPageViewModel"
+    x:DataType="viewmodel:AddEditViewModel"
     BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground},
                                       Dark={StaticResource DarkBackground}}">
     <VerticalStackLayout>
@@ -27,12 +27,26 @@
             HeightRequest="200"
             Source="rock.jpg"
             WidthRequest="200" />
+
+        <Button
+            Command="{Binding GetRockLocationCommand}"
+            Style="{StaticResource ButtonStyle}"
+            Text="Get rock location" />
+        <Label Style="{StaticResource LargeLabel}" Text="GeoLocation:" />
+        <Label>
+            <Label.Text>
+                <MultiBinding StringFormat="Lat: {0:F5}, Lon: {1:F5}">
+                    <Binding Path="Rock.Location.Latitude" />
+                    <Binding Path="Rock.Location.Longitude " />
+                </MultiBinding>
+            </Label.Text>
+        </Label>
+
+
         <Button
             Command="{Binding SubmitCommand}"
             Style="{StaticResource ButtonStyle}"
             Text="Submit" />
-
-
 
     </VerticalStackLayout>
 </ContentPage>

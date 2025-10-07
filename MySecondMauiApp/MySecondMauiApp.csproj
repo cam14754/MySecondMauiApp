@@ -66,13 +66,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\AddPage.xaml.cs">
-	    <DependentUpon>AddPage.xaml</DependentUpon>
+	  <Compile Update="Views\AddEditPage.xaml.cs">
+	    <DependentUpon>AddEditPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\AddPage.xaml">
+	  <MauiXaml Update="Views\AddEditPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

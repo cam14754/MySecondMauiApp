@@ -4,16 +4,11 @@
     {
         public ObservableCollection<Rock> Rocks { get; } = [];
 
+
+
         public RockDataService()
         {
 
-        }
-
-        public void AssignGUID(Rock rock)
-        {
-            rock ??= new Rock();
-
-            rock.ID = Guid.NewGuid();
         }
 
         public void AddRock(Rock rock)
