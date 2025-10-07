@@ -8,6 +8,14 @@
         IGeolocation geolocation = geolocation;
 
         [ObservableProperty]
+        List<string> rockTypes = new()
+        {
+            "Igneous",
+            "Sedimentary",
+            "Metamorphic"
+        };
+
+        [ObservableProperty]
         Rock rock;
 
         [RelayCommand]

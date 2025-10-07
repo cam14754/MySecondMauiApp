@@ -13,8 +13,8 @@
         <Label Style="{StaticResource LargeLabel}" Text="Rock Name:" />
         <Entry Text="{Binding Rock.Name}" />
 
-        <Label Style="{StaticResource LargeLabel}" Text="Rock Type:" />
-        <Entry Text="{Binding Rock.Type}" />
+        <Label Style="{StaticResource LargeLabel}" Text="Select Rock Type:" />
+        <Picker ItemsSource="{Binding RockTypes}" SelectedItem="{Binding Rock.Type}" />
 
         <Label Style="{StaticResource LargeLabel}" Text="Rock Description:" />
         <Entry Text="{Binding Rock.Description}" />
@@ -41,6 +41,7 @@
                 </MultiBinding>
             </Label.Text>
         </Label>
+
 
 
         <Button

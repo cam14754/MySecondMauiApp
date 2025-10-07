@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|c:\\users\\cam14754\\desktop\\firstprojects\\mysecondmauiapp\\mysecondmauiapp\\views\\addeditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|solutionrelative:mysecondmauiapp\\views\\addeditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|c:\\users\\cam14754\\desktop\\firstprojects\\mysecondmauiapp\\mysecondmauiapp\\viewmodels\\addeditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|solutionrelative:mysecondmauiapp\\viewmodels\\addeditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,20 +15,16 @@
       "RelativeMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|solutionrelative:mysecondmauiapp\\services\\rockdataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|c:\\users\\cam14754\\desktop\\firstprojects\\mysecondmauiapp\\mysecondmauiapp\\views\\addeditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|solutionrelative:mysecondmauiapp\\views\\addeditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|c:\\users\\cam14754\\desktop\\firstprojects\\mysecondmauiapp\\mysecondmauiapp\\model\\rock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|solutionrelative:mysecondmauiapp\\model\\rock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|c:\\users\\cam14754\\desktop\\firstprojects\\mysecondmauiapp\\mysecondmauiapp\\platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|solutionrelative:mysecondmauiapp\\platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|c:\\users\\cam14754\\desktop\\firstprojects\\mysecondmauiapp\\mysecondmauiapp\\viewmodels\\mainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|solutionrelative:mysecondmauiapp\\viewmodels\\mainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|c:\\users\\cam14754\\desktop\\firstprojects\\mysecondmauiapp\\mysecondmauiapp\\platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|solutionrelative:mysecondmauiapp\\platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{003C53B3-E776-4AC3-AB57-00910FD81AC5}|MySecondMauiApp\\MySecondMauiApp.csproj|c:\\users\\cam14754\\desktop\\firstprojects\\mysecondmauiapp\\mysecondmauiapp\\views\\addeditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,11 +42,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AndroidManifest.xml",
               "DocumentMoniker": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\Platforms\\Android\\AndroidManifest.xml",
               "RelativeDocumentMoniker": "MySecondMauiApp\\Platforms\\Android\\AndroidManifest.xml",
@@ -59,13 +59,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "AddEditPage.xaml",
               "DocumentMoniker": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\Views\\AddEditPage.xaml",
               "RelativeDocumentMoniker": "MySecondMauiApp\\Views\\AddEditPage.xaml",
               "ToolTip": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\Views\\AddEditPage.xaml",
               "RelativeToolTip": "MySecondMauiApp\\Views\\AddEditPage.xaml",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAYwCQAAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAYwC4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-10-07T04:14:15.786Z",
               "EditorCaption": ""
@@ -73,12 +73,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AddEditViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\ViewModels\\AddEditViewModel.cs",
+              "RelativeDocumentMoniker": "MySecondMauiApp\\ViewModels\\AddEditViewModel.cs",
+              "ToolTip": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\ViewModels\\AddEditViewModel.cs",
+              "RelativeToolTip": "MySecondMauiApp\\ViewModels\\AddEditViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-07T01:42:14.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "RockDataService.cs",
               "DocumentMoniker": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\Services\\RockDataService.cs",
               "RelativeDocumentMoniker": "MySecondMauiApp\\Services\\RockDataService.cs",
               "ToolTip": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\Services\\RockDataService.cs",
               "RelativeToolTip": "MySecondMauiApp\\Services\\RockDataService.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAgwBcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-07T04:03:29.525Z",
               "EditorCaption": ""
@@ -98,19 +111,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AddEditViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\ViewModels\\AddEditViewModel.cs",
-              "RelativeDocumentMoniker": "MySecondMauiApp\\ViewModels\\AddEditViewModel.cs",
-              "ToolTip": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\ViewModels\\AddEditViewModel.cs*",
-              "RelativeToolTip": "MySecondMauiApp\\ViewModels\\AddEditViewModel.cs*",
-              "ViewState": "AgIAACAAAAAAAAAAAAAgwCkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T01:42:14.685Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 7,
               "Title": "MainPage.xaml",
               "DocumentMoniker": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\Views\\MainPage.xaml",
@@ -124,13 +124,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "MainPageViewModel.cs",
               "DocumentMoniker": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\ViewModels\\MainPageViewModel.cs",
               "RelativeDocumentMoniker": "MySecondMauiApp\\ViewModels\\MainPageViewModel.cs",
               "ToolTip": "C:\\Users\\cam14754\\Desktop\\FirstProjects\\MySecondMauiApp\\MySecondMauiApp\\ViewModels\\MainPageViewModel.cs",
               "RelativeToolTip": "MySecondMauiApp\\ViewModels\\MainPageViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-06T00:21:05.523Z",
               "EditorCaption": ""
