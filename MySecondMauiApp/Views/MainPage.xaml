@@ -51,7 +51,6 @@
             Grid.RowSpan="2"
             Grid.ColumnSpan="5"
             ItemsSource="{Binding Rocks}"
-            SelectedItem="{Binding SelectedRock}"
             SelectionMode="Single">
 
 
@@ -84,6 +83,7 @@
                                 <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
                                     <Label Style="{StaticResource LargeLabelBold}" Text="{Binding Name}" />
                                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Details}" />
+                                    <Label Style="{StaticResource SmallLabel}" Text="{Binding ID, StringFormat='ID: {0}'}" />
                                 </VerticalStackLayout>
                             </Grid>
                         </Border>
@@ -95,7 +95,7 @@
         <Button
             Grid.Row="2"
             Grid.ColumnSpan="5"
-            Command="{Binding AddRockTestCommand}"
+            Command="{Binding GoToAddPageCommand}"
             Style="{StaticResource BigButton}"
             Text="+" />
 

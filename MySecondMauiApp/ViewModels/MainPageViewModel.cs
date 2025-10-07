@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using MySecondMauiApp.Model;
 using MySecondMauiApp.ViewModels;
 using System.Collections.ObjectModel;
@@ -9,13 +8,13 @@ namespace MySecondMauiApp
 {
     public partial class MainPageViewModel : BaseViewModel
     {
-        public ObservableCollection<Rock> Rocks { get; } = new();
+        private readonly RockDataService rockDataService;
 
-        [ObservableProperty]
-        private Rock selectedRock;
+        public ObservableCollection<Rock> Rocks => rockDataService.Rocks;
 
-        public MainPageViewModel()
+        public MainPageViewModel(RockDataService rockDataService)
         {
+            this.rockDataService = rockDataService;
             Title = "My Rock Collection!";
         }
 
@@ -23,20 +22,17 @@ namespace MySecondMauiApp
         public void AddRockTest()
         {
             Debug.WriteLine("AddRockTest");
-            //Generate a rock for testing
-            Rock rock = new Rock();
-            rock.Name = "My Rock";
-            rock.Details = "These are the details of my rock";
-            rock.Image = "rock.jpg";
-
-            Rocks.Add(rock);
+            rockDataService.AddTestRock();
         }
 
-
         [RelayCommand]
-        void SelectRockCard(Rock rock)
+        async Task GoToAddPage()
         {
-            SelectedRock = rock;
+            await Shell.Current.GoToAsync(nameof(AddPage), true, new Dictionary<string, object>
+            {
+                {"Rock", new Rock()}
+            });
         }
     }
 }
+

@@ -16,8 +16,15 @@ namespace MySecondMauiApp
                 });
 
             builder.Services.AddSingleton<MainPageViewModel>();
+            builder.Services.AddTransient<AddPageViewModel>();
 
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<AddPage>();
+
+
+            builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
+            builder.Services.AddSingleton<IMap>(Map.Default);
+            builder.Services.AddSingleton<RockDataService>();
 
 #if DEBUG
             builder.Logging.AddDebug();
