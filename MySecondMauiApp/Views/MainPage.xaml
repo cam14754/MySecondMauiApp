@@ -56,57 +56,38 @@
 
 
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                <LinearItemsLayout ItemSpacing="0" Orientation="Vertical" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Rock">
-                    <!--  TEMPLATE ROOT  -->
-                    <Border
-                        x:Name="Root"
-                        Margin="10"
-                        HeightRequest="125"
-                        Style="{StaticResource CardView}">
-                        <Grid ColumnDefinitions="125,*">
-                            <Border
-                                HeightRequest="110"
-                                HorizontalOptions="Center"
-                                Stroke="{StaticResource Primary}"
-                                StrokeShape="RoundRectangle 10"
-                                StrokeThickness="2"
-                                VerticalOptions="Center"
-                                WidthRequest="110">
-                                <Image
-                                    Aspect="Fill"
+                    <StackLayout Style="{StaticResource SelectableCardBorder}">
+                        <Border x:Name="CardBorder" Style="{StaticResource BorderCardStyle}">
+                            <Grid ColumnDefinitions="125,*">
+                                <Border
                                     HeightRequest="110"
                                     HorizontalOptions="Center"
-                                    Source="{Binding Image}"
+                                    Stroke="{StaticResource Primary}"
+                                    StrokeShape="RoundRectangle 10"
+                                    StrokeThickness="2"
                                     VerticalOptions="Center"
-                                    WidthRequest="110" />
-                            </Border>
+                                    WidthRequest="110">
+                                    <Image
+                                        Aspect="Fill"
+                                        HeightRequest="110"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding Image}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="110" />
+                                </Border>
 
-                            <VerticalStackLayout
-                                Grid.Column="1"
-                                Padding="10"
-                                VerticalOptions="Center">
-                                <Label Style="{StaticResource LargeLabelBold}" Text="{Binding Name}" />
-                                <Label Style="{StaticResource MediumLabel}" Text="{Binding Details}" />
-                            </VerticalStackLayout>
-                        </Grid>
-
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState Name="Normal" />
-
-                                <VisualState Name="Selected">
-                                    <VisualState.Setters>
-                                        <Setter TargetName="Root" Property="Border.Stroke" Value="{StaticResource Accent}" />
-                                        <Setter TargetName="Root" Property="Border.StrokeThickness" Value="5" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                    </Border>
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Style="{StaticResource LargeLabelBold}" Text="{Binding Name}" />
+                                    <Label Style="{StaticResource MediumLabel}" Text="{Binding Details}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
