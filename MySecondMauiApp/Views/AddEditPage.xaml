@@ -25,7 +25,7 @@
         <Label Style="{StaticResource LargeLabel}" Text="Image:" />
         <Image
             HeightRequest="200"
-            Source="rock.jpg"
+            Source="{Binding Rock.ImageString}"
             WidthRequest="200" />
 
         <Button

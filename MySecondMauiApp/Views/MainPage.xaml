@@ -92,11 +92,11 @@
                                         WidthRequest="110">
                                         <Image
                                             Aspect="Fill"
-                                            HeightRequest="100"
+                                            HeightRequest="110"
                                             HorizontalOptions="Center"
                                             Source="{Binding ImageString}"
                                             VerticalOptions="Center"
-                                            WidthRequest="100" />
+                                            WidthRequest="110" />
                                     </Border>
 
                                     <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">

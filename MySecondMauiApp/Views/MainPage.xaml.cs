@@ -2,11 +2,17 @@
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage(MainPageViewModel viewModel)
+        public MainPage(MainPageViewModel mainPageViewModel)
         {
             InitializeComponent();
-            BindingContext = viewModel;
+            BindingContext = mainPageViewModel;
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await (BindingContext as MainPageViewModel)?.LoadRocksAsync();
+        }
     }
 }

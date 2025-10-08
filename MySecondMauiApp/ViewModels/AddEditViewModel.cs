@@ -5,10 +5,6 @@
     public partial class AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation) : BaseViewModel
     {
 
-        //public AddEditViewModel() 
-        //{
-
-        //}
         RockDataService rockDataService = rockDataService;
         IGeolocation geolocation = geolocation;
 

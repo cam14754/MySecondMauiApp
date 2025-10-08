@@ -16,8 +16,10 @@ namespace MySecondMauiApp
             Title = "My Rock Collection!";
         }
 
+
+
         [RelayCommand]
-        async Task LoadRocksAsync()
+        public async Task LoadRocksAsync()
         {
             if (IsBusy)
                 return;
@@ -173,13 +175,13 @@ namespace MySecondMauiApp
 
                 // Build content
                 var content =
-                    $@"Rock
-                    ----
-                    Name: {rock.Name}
-                    Type: {rock.Type}
-                    Description: {rock.Description}
-                    ID: {rock.ID}
-                    Location: {(rock.Location is null ? "N/A" : $"{rock.Location.Latitude}, {rock.Location.Longitude}")}";
+$@"Rock
+----
+Name: {rock.Name}
+Type: {rock.Type}
+Description: {rock.Description}
+ID: {rock.ID}
+Location: {(rock.Location is null ? "N/A" : $"{rock.Location.Latitude}, {rock.Location.Longitude}")}";
 
                 // Make the stream
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(content));
