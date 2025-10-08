@@ -8,69 +8,117 @@
     x:DataType="viewmodel:AddEditViewModel"
     BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground},
                                       Dark={StaticResource DarkBackground}}">
-    <VerticalStackLayout>
-        <Border Style="{StaticResource FormCardStyle}">
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Grid.Row="0">
             <VerticalStackLayout>
-                <Label Style="{StaticResource LargeLabel}" Text="Rock Name:" />
-                <Entry Text="{Binding Rock.Name}" />
+                <Border Style="{StaticResource FormCardStyle}">
+                    <VerticalStackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            Style="{StaticResource LargeLabel}"
+                            Text="Rock Name:" />
+                        <Entry Text="{Binding Rock.Name}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource FormCardStyle}">
+                    <VerticalStackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            Style="{StaticResource LargeLabel}"
+                            Text="Select Rock Type:" />
+                        <Picker ItemsSource="{Binding RockTypes}" SelectedItem="{Binding Rock.Type}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource FormCardStyle}">
+                    <VerticalStackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            Style="{StaticResource LargeLabel}"
+                            Text="Rock Description:" />
+                        <Entry ClearButtonVisibility="WhileEditing" Text="{Binding Rock.Description}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource FormCardStyle}">
+                    <VerticalStackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            Style="{StaticResource LargeLabel}"
+                            Text="Image:" />
+                        <Border
+                            HeightRequest="200"
+                            Style="{StaticResource BaseBorder}"
+                            WidthRequest="200">
+                            <Image
+                                Aspect="AspectFill"
+                                HeightRequest="200"
+                                Source="{Binding Rock.ImageString}"
+                                WidthRequest="200" />
+                        </Border>
+
+                        <HorizontalStackLayout WidthRequest="250">
+                            <Button
+                                Margin="10,10,10,5"
+                                Command="{Binding PickImageCommand}"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource ButtonStyle}"
+                                Text="Pick Image" />
+                            <Button
+                                Margin="10,10,10,5"
+                                Command="{Binding TakeImageCommand}"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource ButtonStyle}"
+                                Text="Take Image" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Style="{StaticResource FormCardStyle}">
+                    <VerticalStackLayout>
+
+                        <Label
+                            FontAttributes="Bold"
+                            Style="{StaticResource LargeLabel}"
+                            Text="GeoLocation:" />
+                        <Label Style="{StaticResource MediumLabel}">
+                            <Label.Text>
+                                <MultiBinding StringFormat="Lat: {0:F5}, Lon: {1:F5}">
+                                    <Binding Path="Rock.Location.Latitude" />
+                                    <Binding Path="Rock.Location.Longitude" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                        <Button
+                            Command="{Binding GetRockLocationCommand}"
+                            Style="{StaticResource ButtonStyle}"
+                            Text="Get rock location" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource FormCardStyle}">
+                    <VerticalStackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            Style="{StaticResource LargeLabel}"
+                            Text="Date: " />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button
+                    Margin="10"
+                    Command="{Binding SubmitCommand}"
+                    HeightRequest="60"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="Submit" />
+
             </VerticalStackLayout>
-        </Border>
 
-        <Border Style="{StaticResource FormCardStyle}">
-            <VerticalStackLayout>
-                <Label Style="{StaticResource LargeLabel}" Text="Select Rock Type:" />
-                <Picker ItemsSource="{Binding RockTypes}" SelectedItem="{Binding Rock.Type}" />
-            </VerticalStackLayout>
-        </Border>
+        </ScrollView>
+        <Label
+            Grid.Row="1"
+            Style="{StaticResource SmallLabel}"
+            Text="{Binding Rock.ID, StringFormat='ID: {0}'}" />
 
-        <Border Style="{StaticResource FormCardStyle}">
-            <VerticalStackLayout>
-                <Label Style="{StaticResource LargeLabel}" Text="Rock Description:" />
-                <Entry ClearButtonVisibility="WhileEditing" Text="{Binding Rock.Description}" />
-            </VerticalStackLayout>
-        </Border>
-        <Label Style="{StaticResource LargeLabel}" Text="Rock ID:" />
-        <Label Text="{Binding Rock.ID}" />
-
-        <Label Style="{StaticResource LargeLabel}" Text="Image:" />
-
-        <Image
-            Aspect="AspectFit"
-            HeightRequest="200"
-            Source="{Binding Rock.ImageString}"
-            WidthRequest="200" />
-        <HorizontalStackLayout>
-            <Button
-                Command="{Binding PickImageCommand}"
-                Style="{StaticResource ButtonStyle}"
-                Text="Pick Image" />
-            <Button
-                Command="{Binding TakeImageCommand}"
-                Style="{StaticResource ButtonStyle}"
-                Text="Take Image" />
-        </HorizontalStackLayout>
-
-
-        <Button
-            Command="{Binding GetRockLocationCommand}"
-            Style="{StaticResource ButtonStyle}"
-            Text="Get rock location" />
-        <Label Style="{StaticResource LargeLabel}" Text="GeoLocation:" />
-        <Label>
-            <Label.Text>
-                <MultiBinding StringFormat="Lat: {0:F5}, Lon: {1:F5}">
-                    <Binding Path="Rock.Location.Latitude" />
-                    <Binding Path="Rock.Location.Longitude" />
-                </MultiBinding>
-            </Label.Text>
-        </Label>
-
-
-
-        <Button
-            Command="{Binding SubmitCommand}"
-            Style="{StaticResource ButtonStyle}"
-            Text="Submit" />
-
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

@@ -67,7 +67,8 @@
         public async Task Submit()
         {
             await rockDataService.SaveRock(Rock);
-            Completion?.TrySetResult(Rock);     // Tell caller “we saved this Rock”
+
+            Completion?.TrySetResult(Rock);
 
             await GoBackAsync();
         }
@@ -79,7 +80,7 @@
 
         private async Task<string> SavePhoto(FileResult file)
         {
-            string uniqueName = $"img_{Rock.ID}";
+            string uniqueName = $"img_{Guid.NewGuid()}";
             string destPath = Path.Combine(FileSystem.AppDataDirectory, uniqueName);
 
             if (File.Exists(destPath))
