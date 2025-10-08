@@ -18,32 +18,32 @@
         <!--  Header Buttons  -->
         <Button
             Grid.Column="0"
-            Command="{Binding GoToAddPageNewCommand}"
-            CommandParameter="{Binding Source={x:Reference SelectedItem}, Path=SelectedItem}"
+            Command="{Binding EditRockCommand}"
+            CommandParameter="{Binding SelectedRock}"
             Style="{StaticResource TopButton}"
             Text="Edit" />
         <Button
             Grid.Column="1"
             Command="{Binding DuplicateRockCommand}"
-            CommandParameter="{Binding Source={x:Reference SelectedItem}, Path=SelectedItem}"
+            CommandParameter="{Binding SelectedRock}"
             Style="{StaticResource TopButton}"
             Text="Duplicate" />
         <Button
             Grid.Column="2"
             Command="{Binding DownloadRockCommand}"
-            CommandParameter="{Binding Source={x:Reference SelectedItem}, Path=SelectedItem}"
+            CommandParameter="{Binding SelectedRock}"
             Style="{StaticResource TopButton}"
             Text="Download" />
         <Button
             Grid.Column="3"
             Command="{Binding RenameRockCommand}"
-            CommandParameter="{Binding Source={x:Reference SelectedItem}, Path=SelectedItem}"
+            CommandParameter="{Binding SelectedRock}"
             Style="{StaticResource TopButton}"
             Text="Rename" />
         <Button
             Grid.Column="4"
             Command="{Binding DeleteRockCommand}"
-            CommandParameter="{Binding Source={x:Reference SelectedItem}, Path=SelectedItem}"
+            CommandParameter="{Binding SelectedRock}"
             Style="{StaticResource TopButton}"
             Text="Delete" />
 
@@ -63,6 +63,7 @@
             <CollectionView
                 x:Name="SelectedItem"
                 ItemsSource="{Binding Rocks}"
+                SelectedItem="{Binding SelectedRock, Mode=TwoWay}"
                 SelectionMode="Single">
 
                 <!--  Footer to allow user to scroll all the way down  -->

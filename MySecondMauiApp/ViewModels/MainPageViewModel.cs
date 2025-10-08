@@ -16,6 +16,9 @@ namespace MySecondMauiApp
             Title = "My Rock Collection!";
         }
 
+        [ObservableProperty]
+        Rock selectedRock;
+
 
 
         [RelayCommand]
@@ -41,9 +44,16 @@ namespace MySecondMauiApp
         }
 
         [RelayCommand]
-        async Task GoToAddPageNew(Rock? rock = null)
+        async Task EditRockAsync(Rock rock)
         {
-            rock ??= new Rock();
+            if (rock is null)
+            {
+                await Shell.Current.DisplayAlert(
+                    "No Rock Deleted",
+                    "Please select a rock to delete.",
+                    "OK");
+                return;
+            }
 
             Rock rockClone = rock.Copy();
 
@@ -71,6 +81,8 @@ namespace MySecondMauiApp
                     "Rock Deleted",
                     "Your rock has been deleted successfully!",
                     "OK");
+
+                SelectedRock = null;
             }
             else
             {
@@ -79,6 +91,7 @@ namespace MySecondMauiApp
                     "Your rock was not successfully deleted.",
                     "OK");
             }
+
         }
 
         [RelayCommand]

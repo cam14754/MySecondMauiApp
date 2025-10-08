@@ -57,7 +57,9 @@ namespace MySecondMauiApp
             if (rock is null)
                 return false;
 
-            Rocks.Remove(rock);
+            if (!Rocks.Remove(rock))
+                return false;
+
             await SaveRocksAsync();
             return true;
         }
