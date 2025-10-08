@@ -25,6 +25,13 @@
             </Style>
 
             <Style
+                x:Key="TinyLabel"
+                BasedOn="{StaticResource BaseLabel}"
+                TargetType="Label">
+                <Setter Property="FontSize" Value="9" />
+            </Style>
+
+            <Style
                 x:Key="SmallLabel"
                 BasedOn="{StaticResource BaseLabel}"
                 TargetType="Label">
@@ -66,7 +73,7 @@
                 BasedOn="{StaticResource ButtonStyle}"
                 TargetType="Button">
                 <Setter Property="Margin" Value="4" />
-                <Setter Property="WidthRequest" Value="70" />
+                <Setter Property="WidthRequest" Value="75" />
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Padding" Value="0" />

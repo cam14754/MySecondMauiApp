@@ -22,14 +22,6 @@
         <Label Style="{StaticResource LargeLabel}" Text="Rock ID:" />
         <Label Text="{Binding Rock.ID}" />
 
-        <!--
-        <Label Style="{StaticResource LargeLabel}" Text="Image:" />
-        <Image
-            HeightRequest="200"
-            Source="{Binding Rock.ImageString}"
-            WidthRequest="200" />
-        -->
-
         <Label Style="{StaticResource LargeLabel}" Text="Image:" />
         <Button
             Command="{Binding PickImageCommand}"

@@ -93,17 +93,31 @@
                                         WidthRequest="110">
                                         <Image
                                             Aspect="Fill"
-                                            HeightRequest="110"
+                                            HeightRequest="106"
                                             HorizontalOptions="Center"
                                             Source="{Binding ImageString}"
                                             VerticalOptions="Center"
-                                            WidthRequest="110" />
+                                            WidthRequest="106" />
                                     </Border>
 
                                     <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
                                         <Label Style="{StaticResource LargeLabelBold}" Text="{Binding Name}" />
-                                        <Label Style="{StaticResource MediumLabel}" Text="{Binding Description}" />
-                                        <Label Style="{StaticResource SmallLabel}" Text="{Binding ID, StringFormat='ID: {0}'}" />
+                                        <Label Padding="2,2,2,0" Style="{StaticResource MediumLabel}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontAttributes="Bold" Text="Rock Type: " />
+                                                    <Span Text="{Binding Type}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label
+                                            Padding="2,2,2,0"
+                                            Style="{StaticResource MediumLabel}"
+                                            Text="{Binding Description}" />
+                                        <Label
+                                            Padding="2,5,2,0"
+                                            Style="{StaticResource TinyLabel}"
+                                            Text="{Binding ID, StringFormat='ID: {0}'}" />
                                     </VerticalStackLayout>
                                 </Grid>
                             </Border>
