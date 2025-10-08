@@ -49,18 +49,44 @@ namespace MySecondMauiApp
             if (rock is null)
             {
                 await Shell.Current.DisplayAlert(
-                    "No Rock Deleted",
-                    "Please select a rock to delete.",
+                    "No Rock to Edit",
+                    "Please select a rock to Edit.",
                     "OK");
                 return;
             }
 
             Rock rockClone = rock.Copy();
 
-            await Shell.Current.GoToAsync(nameof(AddEditPage), true, new Dictionary<string, object>
+            await GoToAddEditPage(rockClone);
+        }
+
+        [RelayCommand]
+        async Task GoToAddEditPage(Rock rock)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
             {
-                {"Rock", rockClone}
-            });
+
+                rock ??= new Rock();
+                var tcs = new TaskCompletionSource<Rock?>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+
+                await Shell.Current.GoToAsync(nameof(AddEditPage), true, new Dictionary<string, object>
+                {
+                    {"Rock", rock},
+                    {"Completion", tcs }
+                });
+
+                var result = await tcs.Task;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         [RelayCommand]

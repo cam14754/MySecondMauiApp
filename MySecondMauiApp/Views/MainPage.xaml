@@ -115,7 +115,7 @@
         <Button
             Grid.Row="2"
             Grid.ColumnSpan="5"
-            Command="{Binding GoToAddPageNewCommand}"
+            Command="{Binding GoToAddEditPageCommand}"
             Style="{StaticResource BigButton}"
             Text="+" />
 

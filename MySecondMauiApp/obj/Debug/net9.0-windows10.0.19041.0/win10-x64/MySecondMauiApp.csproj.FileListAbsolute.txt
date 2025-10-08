@@ -517,3 +517,6 @@ C:\Users\cam14754\Desktop\FirstProjects\MySecondMauiApp\MySecondMauiApp\bin\Debu
 C:\Users\cam14754\Desktop\FirstProjects\MySecondMauiApp\MySecondMauiApp\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\MySecondMauiApp.sourcelink.json
 C:\Users\cam14754\Desktop\FirstProjects\MySecondMauiApp\MySecondMauiApp\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\defaultrock.scale-100.jpg
 C:\Users\cam14754\Desktop\FirstProjects\MySecondMauiApp\MySecondMauiApp\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\resizetizer\r\defaultrock.scale-100.jpg
+C:\Users\cam14754\Desktop\FirstProjects\MySecondMauiApp\MySecondMauiApp\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\CommunityToolkit.Maui.dll
+C:\Users\cam14754\Desktop\FirstProjects\MySecondMauiApp\MySecondMauiApp\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\CommunityToolkit.Maui.Core.dll
+C:\Users\cam14754\Desktop\FirstProjects\MySecondMauiApp\MySecondMauiApp\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\System.Speech.dll

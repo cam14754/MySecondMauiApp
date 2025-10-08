@@ -29,8 +29,12 @@ namespace MySecondMauiApp
 
         public async Task SaveRocksAsync()
         {
-            using var dataStream = File.Create(filePath);
-            await JsonSerializer.SerializeAsync(dataStream, Rocks.ToList());
+            try
+            {
+                using var dataStream = File.Create(filePath);
+                await JsonSerializer.SerializeAsync(dataStream, Rocks.ToList());
+            }
+            catch { }
         }
 
         public async Task SaveRock(Rock rock)

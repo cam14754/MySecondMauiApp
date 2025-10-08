@@ -1,6 +1,8 @@
 ﻿namespace MySecondMauiApp
 {
     [QueryProperty(nameof(Rock), "Rock")]
+    [QueryProperty(nameof(Completion), "Completion")]
+
 
     public partial class AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation, IMediaPicker mediaPicker) : BaseViewModel
     {
@@ -19,6 +21,9 @@
 
         [ObservableProperty]
         Rock rock;
+
+        public TaskCompletionSource<Rock?>? Completion { get; set; }
+
 
 
 
@@ -62,6 +67,8 @@
         public async Task Submit()
         {
             await rockDataService.SaveRock(Rock);
+            Completion?.TrySetResult(Rock);     // Tell caller “we saved this Rock”
+
             await GoBackAsync();
         }
 
