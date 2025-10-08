@@ -1,6 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-
-namespace MySecondMauiApp.ViewModels
+﻿namespace MySecondMauiApp.ViewModels
 {
     public partial class BaseViewModel : ObservableObject
     {
@@ -14,6 +12,9 @@ namespace MySecondMauiApp.ViewModels
 
         [ObservableProperty]
         string title;
+
+        [ObservableProperty]
+        bool isRefreshing;
 
         public bool IsNotBusy => !IsBusy;
     }

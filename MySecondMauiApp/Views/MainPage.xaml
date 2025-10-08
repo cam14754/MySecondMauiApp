@@ -54,54 +54,63 @@
             BackgroundColor="Gray"
             HeightRequest="1"
             VerticalOptions="End" />
-
-        <CollectionView
-            x:Name="SelectedItem"
+        <RefreshView
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.ColumnSpan="5"
-            ItemsSource="{Binding Rocks}"
-            SelectionMode="Single">
+            Command="{Binding LoadRocksCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView
+                x:Name="SelectedItem"
+                ItemsSource="{Binding Rocks}"
+                SelectionMode="Single">
 
-            <!--  Footer to allow user to scroll all the way down  -->
-            <CollectionView.Footer>
-                <Grid HeightRequest="140" />
-            </CollectionView.Footer>
+                <!--  Footer to allow user to scroll all the way down  -->
+                <CollectionView.Footer>
+                    <Grid HeightRequest="140" />
+                </CollectionView.Footer>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Rock">
-                    <StackLayout Style="{StaticResource SelectableCardBorder}">
-                        <Border x:Name="CardBorder" Style="{StaticResource BorderCardStyle}">
-                            <Grid ColumnDefinitions="125,*">
-                                <Border
-                                    HeightRequest="110"
-                                    HorizontalOptions="Center"
-                                    Stroke="{StaticResource Primary}"
-                                    StrokeShape="RoundRectangle 10"
-                                    StrokeThickness="2"
-                                    VerticalOptions="Center"
-                                    WidthRequest="110">
-                                    <Image
-                                        Aspect="Fill"
-                                        HeightRequest="100"
+                <CollectionView.EmptyView>
+                    <Label
+                        Margin="20"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource LargeLabelBold}"
+                        Text="No rocks available. Click the + button to add a new rock." />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Rock">
+                        <StackLayout Style="{StaticResource SelectableCardBorder}">
+                            <Border x:Name="CardBorder" Style="{StaticResource BorderCardStyle}">
+                                <Grid ColumnDefinitions="125,*">
+                                    <Border
+                                        HeightRequest="110"
                                         HorizontalOptions="Center"
-                                        Source="{Binding ImageString}"
+                                        Stroke="{StaticResource Primary}"
+                                        StrokeShape="RoundRectangle 10"
+                                        StrokeThickness="2"
                                         VerticalOptions="Center"
-                                        WidthRequest="100" />
-                                </Border>
+                                        WidthRequest="110">
+                                        <Image
+                                            Aspect="Fill"
+                                            HeightRequest="100"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding ImageString}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="100" />
+                                    </Border>
 
-                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
-                                    <Label Style="{StaticResource LargeLabelBold}" Text="{Binding Name}" />
-                                    <Label Style="{StaticResource MediumLabel}" Text="{Binding Description}" />
-                                    <Label Style="{StaticResource SmallLabel}" Text="{Binding ID, StringFormat='ID: {0}'}" />
-                                </VerticalStackLayout>
-                            </Grid>
-                        </Border>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
+                                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Style="{StaticResource LargeLabelBold}" Text="{Binding Name}" />
+                                        <Label Style="{StaticResource MediumLabel}" Text="{Binding Description}" />
+                                        <Label Style="{StaticResource SmallLabel}" Text="{Binding ID, StringFormat='ID: {0}'}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Border>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
         <Button
             Grid.Row="2"
             Grid.ColumnSpan="5"

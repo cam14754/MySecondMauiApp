@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MySecondMauiApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+4d05eb2d804e60ad861535a6f09693060d50d57c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+d7f314e7b04a6b6193cef219a89e20ea38c28342")]
 [assembly: System.Reflection.AssemblyProductAttribute("MySecondMauiApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MySecondMauiApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

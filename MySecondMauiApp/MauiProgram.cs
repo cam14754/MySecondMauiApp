@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Storage;
 using Microsoft.Extensions.Logging;
 
 namespace MySecondMauiApp
@@ -26,6 +27,8 @@ namespace MySecondMauiApp
             builder.Services.AddSingleton<IMap>(Map.Default);
             builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
             builder.Services.AddSingleton<RockDataService>();
+            builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
+
 
 #if DEBUG
             builder.Logging.AddDebug();

@@ -1,17 +1,39 @@
-﻿namespace MySecondMauiApp
+﻿using System.Text.Json;
+
+namespace MySecondMauiApp
 {
     public class RockDataService
     {
         public ObservableCollection<Rock> Rocks { get; } = [];
 
-
+        private readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, "rocks.json");
 
         public RockDataService()
         {
 
         }
 
-        public void SaveRock(Rock rock)
+        public async Task LoadRocksAsync()
+        {
+            if (!File.Exists(filePath))
+                return;
+
+            var dataStream = File.OpenRead(filePath);
+            var rocksList = await JsonSerializer.DeserializeAsync<List<Rock>>(dataStream);
+            Rocks.Clear();
+            foreach (var rock in rocksList ?? [])
+            {
+                Rocks.Add(rock);
+            }
+        }
+
+        public async Task SaveRocksAsync()
+        {
+            using var dataStream = File.Create(filePath);
+            await JsonSerializer.SerializeAsync(dataStream, Rocks.ToList());
+        }
+
+        public async Task SaveRock(Rock rock)
         {
             if (rock is null)
                 return;
@@ -26,29 +48,37 @@
             {
                 existingRock.CopyFrom(rock);
             }
+
+            await SaveRocksAsync();
         }
 
-        public bool DeleteRock(Rock rock)
+        public async Task<bool> DeleteRockAsync(Rock rock)
         {
-            return Rocks.Remove(rock);
+            if (rock is null)
+                return false;
+
+            Rocks.Remove(rock);
+            await SaveRocksAsync();
+            return true;
         }
 
-        public bool DuplicateRock(Rock rock)
+        public async Task<bool> DuplicateRockAsync(Rock rock)
         {
             if (rock is null)
                 return false;
 
             var newRock = rock.Copy(true);
-            SaveRock(newRock);
+            await SaveRocksAsync();
             return true;
         }
 
-        public bool ChangeName(Rock rock, string name)
+        public async Task<bool> ChangeNameAsync(Rock rock, string name)
         {
             if (rock is null || name is null)
                 return false;
 
             rock.Name = name;
+            await SaveRocksAsync();
             return true;
         }
     }
