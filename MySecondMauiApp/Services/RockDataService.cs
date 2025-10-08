@@ -68,6 +68,7 @@ namespace MySecondMauiApp
                 return false;
 
             var newRock = rock.Copy(true);
+            await SaveRock(newRock);
             await SaveRocksAsync();
             return true;
         }
