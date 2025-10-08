@@ -24,15 +24,20 @@
             Text="Edit" />
         <Button
             Grid.Column="1"
+            Command="{Binding DuplicateRockCommand}"
+            CommandParameter="{Binding Source={x:Reference SelectedItem}, Path=SelectedItem}"
             Style="{StaticResource TopButton}"
             Text="Duplicate" />
         <Button
             Grid.Column="2"
-            Margin="4"
+            Command="{Binding DownloadRockCommand}"
+            CommandParameter="{Binding Source={x:Reference SelectedItem}, Path=SelectedItem}"
             Style="{StaticResource TopButton}"
             Text="Download" />
         <Button
             Grid.Column="3"
+            Command="{Binding RenameRockCommand}"
+            CommandParameter="{Binding Source={x:Reference SelectedItem}, Path=SelectedItem}"
             Style="{StaticResource TopButton}"
             Text="Rename" />
         <Button
@@ -58,10 +63,10 @@
             ItemsSource="{Binding Rocks}"
             SelectionMode="Single">
 
-
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="0" Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
+            <!--  Footer to allow user to scroll all the way down  -->
+            <CollectionView.Footer>
+                <Grid HeightRequest="140" />
+            </CollectionView.Footer>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Rock">
@@ -78,11 +83,11 @@
                                     WidthRequest="110">
                                     <Image
                                         Aspect="Fill"
-                                        HeightRequest="110"
+                                        HeightRequest="100"
                                         HorizontalOptions="Center"
                                         Source="{Binding ImageString}"
                                         VerticalOptions="Center"
-                                        WidthRequest="110" />
+                                        WidthRequest="100" />
                                 </Border>
 
                                 <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
