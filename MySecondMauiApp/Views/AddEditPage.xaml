@@ -9,33 +9,47 @@
     BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground},
                                       Dark={StaticResource DarkBackground}}">
     <VerticalStackLayout>
+        <Border Style="{StaticResource FormCardStyle}">
+            <VerticalStackLayout>
+                <Label Style="{StaticResource LargeLabel}" Text="Rock Name:" />
+                <Entry Text="{Binding Rock.Name}" />
+            </VerticalStackLayout>
+        </Border>
 
-        <Label Style="{StaticResource LargeLabel}" Text="Rock Name:" />
-        <Entry Text="{Binding Rock.Name}" />
+        <Border Style="{StaticResource FormCardStyle}">
+            <VerticalStackLayout>
+                <Label Style="{StaticResource LargeLabel}" Text="Select Rock Type:" />
+                <Picker ItemsSource="{Binding RockTypes}" SelectedItem="{Binding Rock.Type}" />
+            </VerticalStackLayout>
+        </Border>
 
-        <Label Style="{StaticResource LargeLabel}" Text="Select Rock Type:" />
-        <Picker ItemsSource="{Binding RockTypes}" SelectedItem="{Binding Rock.Type}" />
-
-        <Label Style="{StaticResource LargeLabel}" Text="Rock Description:" />
-        <Entry Text="{Binding Rock.Description}" />
-
+        <Border Style="{StaticResource FormCardStyle}">
+            <VerticalStackLayout>
+                <Label Style="{StaticResource LargeLabel}" Text="Rock Description:" />
+                <Entry ClearButtonVisibility="WhileEditing" Text="{Binding Rock.Description}" />
+            </VerticalStackLayout>
+        </Border>
         <Label Style="{StaticResource LargeLabel}" Text="Rock ID:" />
         <Label Text="{Binding Rock.ID}" />
 
         <Label Style="{StaticResource LargeLabel}" Text="Image:" />
-        <Button
-            Command="{Binding PickImageCommand}"
-            Style="{StaticResource ButtonStyle}"
-            Text="Pick Image" />
-        <Button
-            Command="{Binding TakeImageCommand}"
-            Style="{StaticResource ButtonStyle}"
-            Text="Take Image" />
+
         <Image
             Aspect="AspectFit"
             HeightRequest="200"
             Source="{Binding Rock.ImageString}"
             WidthRequest="200" />
+        <HorizontalStackLayout>
+            <Button
+                Command="{Binding PickImageCommand}"
+                Style="{StaticResource ButtonStyle}"
+                Text="Pick Image" />
+            <Button
+                Command="{Binding TakeImageCommand}"
+                Style="{StaticResource ButtonStyle}"
+                Text="Take Image" />
+        </HorizontalStackLayout>
+
 
         <Button
             Command="{Binding GetRockLocationCommand}"
