@@ -2,11 +2,12 @@
 {
     [QueryProperty(nameof(Rock), "Rock")]
 
-    public partial class AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation) : BaseViewModel
+    public partial class AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation, IMediaPicker mediaPicker) : BaseViewModel
     {
 
         RockDataService rockDataService = rockDataService;
         IGeolocation geolocation = geolocation;
+        IMediaPicker mediaPicker = mediaPicker;
 
         [ObservableProperty]
         List<string> rockTypes = new()
@@ -19,16 +20,48 @@
         [ObservableProperty]
         Rock rock;
 
-        [ObservableProperty]
-        Rock rock2;
 
 
-        Rock edditingRock = new();
+        [RelayCommand]
+        async Task PickImageAsync()
+        {
+            try
+            {
+                FileResult? photo = await mediaPicker.PickPhotoAsync();
+
+                if (photo is null)
+                    return;
+
+                Rock.ImageString = await SavePhoto(photo);
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Camera error", ex.Message, "OK");
+            }
+        }
+
+        [RelayCommand]
+        private async Task TakeImageAsync()
+        {
+            try
+            {
+                FileResult? photo = await mediaPicker.CapturePhotoAsync();
+
+                if (photo is null)
+                    return;
+
+                Rock.ImageString = await SavePhoto(photo);
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Camera error", ex.Message, "OK");
+            }
+        }
 
         [RelayCommand]
         public async Task Submit()
         {
-            rockDataService.SaveRock(Rock);
+            await rockDataService.SaveRock(Rock);
             await GoBackAsync();
         }
 
@@ -37,7 +70,20 @@
             await Shell.Current.GoToAsync("..", true);
         }
 
+        private async Task<string> SavePhoto(FileResult file)
+        {
+            string uniqueName = $"img_{Rock.ID}";
+            string destPath = Path.Combine(FileSystem.AppDataDirectory, uniqueName);
 
+            if (File.Exists(destPath))
+                File.Delete(destPath);
+
+            using var src = await file.OpenReadAsync();
+            using var dest = File.OpenWrite(destPath);
+            await src.CopyToAsync(dest);
+
+            return destPath;
+        }
         [RelayCommand]
         async Task GetRockLocation()
         {

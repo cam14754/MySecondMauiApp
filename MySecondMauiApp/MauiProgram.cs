@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui;
-using CommunityToolkit.Maui.Storage;
 using Microsoft.Extensions.Logging;
 
 namespace MySecondMauiApp
@@ -25,9 +24,9 @@ namespace MySecondMauiApp
 
             builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
             builder.Services.AddSingleton<IMap>(Map.Default);
-            builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
             builder.Services.AddSingleton<RockDataService>();
             builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
+            builder.Services.AddSingleton<IMediaPicker>(MediaPicker.Default);
 
 
 #if DEBUG

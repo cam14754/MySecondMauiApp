@@ -34,6 +34,5 @@
             this.Location = other.Location;
             this.ID = other.ID;
         }
-
     }
 }
