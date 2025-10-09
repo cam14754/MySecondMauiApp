@@ -85,13 +85,14 @@
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
                 </Border>
+
                 <Border Style="{StaticResource FormCardStyle}">
                     <VerticalStackLayout>
 
                         <Label
                             FontAttributes="Bold"
                             Style="{StaticResource LargeLabel}"
-                            Text="GeoLocation:" />
+                            Text="Where did you find this rock:" />
                         <Grid
                             ColumnDefinitions="*, *"
                             IsVisible="{Binding Rock.HasLocation}"
@@ -121,17 +122,22 @@
                     </VerticalStackLayout>
                 </Border>
 
+
+
                 <Border Style="{StaticResource FormCardStyle}">
                     <VerticalStackLayout>
                         <Label
                             FontAttributes="Bold"
                             Style="{StaticResource LargeLabel}"
-                            Text="Date: " />
+                            Text="When did you find this rock: " />
+                        <DatePicker
+                            Date="{Binding Rock.DateTime}"
+                            MaximumDate="{Binding MaxRockDate}"
+                            MinimumDate="{Binding MinRockDate}" />
                     </VerticalStackLayout>
                 </Border>
 
                 <Button
-                    Margin="10"
                     Command="{Binding SubmitCommand}"
                     HeightRequest="60"
                     Style="{StaticResource ButtonStyle}"

@@ -26,7 +26,8 @@
 
         public TaskCompletionSource<Rock?>? Completion { get; set; }
 
-
+        public DateTime MinRockDate { get; } = new(1900, 1, 1);
+        public DateTime MaxRockDate { get; } = DateTime.Today;
 
 
         [RelayCommand]
