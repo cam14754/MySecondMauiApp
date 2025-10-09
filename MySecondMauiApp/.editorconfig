@@ -151,3 +151,5 @@ dotnet_diagnostic.MCTC001.severity = none
 
 # ESRIMEL0001: (string) is hardcoded.
 dotnet_diagnostic.ESRIMEL0001.severity = none
+
+dotnet_diagnostic.MVVMTK0045.severity = none
