@@ -17,7 +17,12 @@
                             FontAttributes="Bold"
                             Style="{StaticResource LargeLabel}"
                             Text="Rock Name:" />
-                        <Entry Placeholder="Enter the rock name" Text="{Binding Rock.Name}" />
+                        <Entry
+                            IsSpellCheckEnabled="False"
+                            IsTextPredictionEnabled="False"
+                            MaxLength="50"
+                            Placeholder="Enter the rock name (Max 50 charecters)"
+                            Text="{Binding Rock.Name}" />
                     </VerticalStackLayout>
                 </Border>
 
@@ -42,7 +47,7 @@
                             Text="Rock Description:" />
                         <Editor
                             AutoSize="TextChanges"
-                            Placeholder="Enter a description of your rock (Max 300 words)"
+                            Placeholder="Enter a description of your rock (Max 50 charecters)"
                             Text="{Binding Rock.Description}" />
                     </VerticalStackLayout>
                 </Border>
@@ -87,14 +92,28 @@
                             FontAttributes="Bold"
                             Style="{StaticResource LargeLabel}"
                             Text="GeoLocation:" />
-                        <Label IsVisible="{Binding Rock.HasLocation}" Style="{StaticResource MediumLabel}">
-                            <Label.Text>
-                                <MultiBinding StringFormat="Lat: {0:F5}, Lon: {1:F5}">
-                                    <Binding Path="Rock.Location.Latitude" />
-                                    <Binding Path="Rock.Location.Longitude" />
-                                </MultiBinding>
-                            </Label.Text>
-                        </Label>
+                        <Grid
+                            ColumnDefinitions="*, *"
+                            IsVisible="{Binding Rock.HasLocation}"
+                            RowDefinitions="25, 25">
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="{Binding Rock.Location.Latitude, StringFormat='Latitude: {0:F3}&#186;'}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{Binding Rock.Location.Longitude, StringFormat='Longitude: {0:F3}&#186;'}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="{Binding Rock.Location.Altitude, StringFormat='Altitude: {0:F3}&#186;'}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="{Binding Rock.Location.Accuracy, StringFormat='Accuracy: {0:F3}&#186;'}" />
+                        </Grid>
+
                         <Button
                             Command="{Binding GetRockLocationCommand}"
                             Style="{StaticResource ButtonStyle}"

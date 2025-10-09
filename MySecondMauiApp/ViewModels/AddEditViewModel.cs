@@ -4,29 +4,20 @@
     [QueryProperty(nameof(Completion), "Completion")]
 
 
-    public partial class AddEditViewModel : BaseViewModel
+    public partial class AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation, IMediaPicker mediaPicker) : BaseViewModel
     {
 
-        RockDataService rockDataService;
-        IGeolocation geolocation;
-        IMediaPicker mediaPicker;
-
-        public AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation, IMediaPicker mediaPicker)
-        {
-            this.rockDataService = rockDataService;
-            this.geolocation = geolocation;
-            this.mediaPicker = mediaPicker;
-            this.rock ??= new Rock();
-            this.rock.Location ??= new Location(0, 0);
-        }
+        RockDataService rockDataService = rockDataService;
+        IGeolocation geolocation = geolocation;
+        IMediaPicker mediaPicker = mediaPicker;
 
         [ObservableProperty]
-        List<string> rockTypes = new()
-        {
+        private List<string> rockTypes =
+        [
             "Igneous",
             "Sedimentary",
             "Metamorphic"
-        };
+        ];
 
         [ObservableProperty]
         Rock rock;
