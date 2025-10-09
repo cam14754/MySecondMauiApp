@@ -107,12 +107,15 @@
 
 
                 location = await geolocation.GetLastKnownLocationAsync();
-                location = await geolocation.GetLocationAsync(
+                if (location is null)
+                {
+                    location = await geolocation.GetLocationAsync(
                     new GeolocationRequest
                     {
                         DesiredAccuracy = GeolocationAccuracy.High,
-                        Timeout = TimeSpan.FromSeconds(30)
+                        Timeout = TimeSpan.FromSeconds(30),
                     });
+                }
 
                 if (location is null)
                     return;

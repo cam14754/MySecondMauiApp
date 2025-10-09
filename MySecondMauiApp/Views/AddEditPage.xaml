@@ -123,8 +123,6 @@
                         </VerticalStackLayout>
                     </Border>
 
-
-
                     <Border Style="{StaticResource FormCardStyle}">
                         <VerticalStackLayout>
                             <Label
