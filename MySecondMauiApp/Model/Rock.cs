@@ -16,18 +16,19 @@ namespace MySecondMauiApp.Model;
 
 public partial class Rock() : ObservableObject
 {
-
-    List<string> rockSpeciesObject;
-
     [ObservableProperty] private string? name;
     [ObservableProperty] private string? description;
+
     [NotifyPropertyChangedFor(nameof(SpeciesList))]
     [NotifyPropertyChangedFor(nameof(HasRockType))]
     [ObservableProperty] private RockType? type;
+
     [ObservableProperty] private string? species;
     [ObservableProperty] private string? imageString;
+
     [NotifyPropertyChangedFor(nameof(HasLocation))]
     [ObservableProperty] private Location? location;
+
     [ObservableProperty] private DateTime dateTime = DateTime.Today;
     [ObservableProperty] private Guid iD = Guid.NewGuid();
 
@@ -65,6 +66,7 @@ public partial class Rock() : ObservableObject
         RockType.Igneous => RockSpecies.IgneousRocks,
         RockType.Sedimentary => RockSpecies.SedimentaryRocks,
         RockType.Metamorphic => RockSpecies.MetamorphicRocks,
+        //When Type is null (eg, when the page first loads), return an empty list
         _ => [],
     };
 

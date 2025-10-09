@@ -11,9 +11,6 @@
 // Redlands, California, USA 92373
 //
 // email: contracts@esri.com
-
-using System.Text;
-
 namespace MySecondMauiApp;
 
 public partial class MainPageViewModel : BaseViewModel
@@ -30,7 +27,7 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     [ObservableProperty]
-    Rock selectedRock;
+    Rock? selectedRock;
 
 
 

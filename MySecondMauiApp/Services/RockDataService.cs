@@ -53,7 +53,7 @@ public class RockDataService
         catch { }
     }
 
-    public async Task SaveRock(Rock rock)
+    public async Task SaveRock(Rock? rock)
     {
         if (rock is null)
         {

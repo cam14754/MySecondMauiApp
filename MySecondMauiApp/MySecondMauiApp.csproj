@@ -67,15 +67,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\AddEditPage.xaml.cs">
+	  <Compile Update="Pages\AddEditPage.xaml.cs">
 	    <DependentUpon>AddEditPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\AddEditPage.xaml">
+	  <MauiXaml Update="Pages\AddEditPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Components\" />
 	</ItemGroup>
 
 </Project>

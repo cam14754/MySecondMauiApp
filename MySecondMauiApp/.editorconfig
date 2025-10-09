@@ -148,7 +148,10 @@ dotnet_diagnostic.MCT001.severity = none
 # MCTC001: `.UseMauiCommunityToolkitCamera()` Not Found on MauiAppBuilder
 dotnet_diagnostic.MCTC001.severity = none
 
+dotnet_diagnostic.MVVMTK0045.severity = none
+
+
 # ESRIMEL0001: (string) is hardcoded.
 dotnet_diagnostic.ESRIMEL0001.severity = none
-
-dotnet_diagnostic.MVVMTK0045.severity = none
+csharp_style_prefer_primary_constructors = true:suggestion
+csharp_prefer_system_threading_lock = true:suggestion

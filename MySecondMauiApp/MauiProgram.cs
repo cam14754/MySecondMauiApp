@@ -12,9 +12,6 @@
 //
 // email: contracts@esri.com
 
-using CommunityToolkit.Maui;
-using Microsoft.Extensions.Logging;
-
 namespace MySecondMauiApp;
 
 public static class MauiProgram
