@@ -12,3 +12,5 @@ MySecondMauiApp/bin/
 # MAUI specific build cache
 MySecondMauiApp/obj/
 MySecondMauiApp/bin/
+
+.vs/
