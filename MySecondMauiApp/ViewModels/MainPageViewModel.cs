@@ -60,7 +60,7 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task EditRockAsync(Rock rock)
+    async Task EditRockAsync(Rock? rock)
     {
         if (rock is null)
         {
@@ -77,7 +77,7 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task GoToAddEditPage(Rock rock)
+    async Task GoToAddEditPage(Rock? rock)
     {
         if (IsBusy)
         {
@@ -86,24 +86,19 @@ public partial class MainPageViewModel : BaseViewModel
 
         IsBusy = true;
 
-        try
-        {
-            rock ??= new Rock();
-            var tcs = new TaskCompletionSource<Rock?>(TaskCreationOptions.RunContinuationsAsynchronously);
+        rock ??= new Rock();
+        var tcs = new TaskCompletionSource<Rock?>(TaskCreationOptions.RunContinuationsAsynchronously);
 
-
-            await Shell.Current.GoToAsync(nameof(AddEditPage), true, new Dictionary<string, object>
+        await Shell.Current.GoToAsync(nameof(AddEditPage), true, new Dictionary<string, object?>
             {
                 {"Rock", rock},
                 {"Completion", tcs }
             });
 
-            var result = await tcs.Task;
-        }
-        finally
-        {
-            IsBusy = false;
-        }
+        var result = await tcs.Task;
+
+        IsBusy = false;
+
     }
 
     [RelayCommand]
@@ -219,27 +214,22 @@ public partial class MainPageViewModel : BaseViewModel
                 "Choose a filename (e.g., my-rock.txt)",
                 accept: "Save",
                 cancel: "Cancel",
-                placeholder: $"{Sanitize(rock.Name)}.txt",
-                maxLength: 128,
-                keyboard: Keyboard.Text);
+                placeholder: $"{Sanitize(rock.Name is null ? "RockName" : rock.Name)}.txt",
+                maxLength: 128);
 
-            if (string.IsNullOrWhiteSpace(input))
-            {
-                return; // user cancelled
-            }
 
             // Ensure an extension
-            var fileName = EnsureExtension(input.Trim(), ".txt");
+            var fileName = EnsureValidFileName(input.Trim(), ".txt", rock.ID);
 
             // Build content
             var content =
-$@"Rock
+$@"My Downloaded Rock!
 ----
-Name: {rock.Name}
-Type: {rock.Type}
-Description: {rock.Description}
+Name: {(rock.Name is null ? "Empty" : rock.Name)}
+Type: {(rock.Type is null ? "Empty" : rock.Type)}
+Description: {(rock.Description is null ? "Empty" : rock.Description)}
 ID: {rock.ID}
-Location: {(rock.Location is null ? "N/A" : $"{rock.Location.Latitude}, {rock.Location.Longitude}")}";
+Location: {(rock.Location is null ? "Empty" : $"{rock.Location.Latitude}, {rock.Location.Longitude}")}";
 
             using var stream = new MemoryStream(Encoding.UTF8.GetBytes(content));
 
@@ -259,10 +249,17 @@ Location: {(rock.Location is null ? "N/A" : $"{rock.Location.Latitude}, {rock.Lo
         }
     }
 
-    // Helpers (AI Slop, be warned)
-    private static string EnsureExtension(string name, string ext)
-        => Path.HasExtension(name) ? name : name + ext;
+    private static string EnsureValidFileName(string? name, string ext, Guid ID)
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+            name = $"{ID}";
+        }
+        name = Path.HasExtension(name) ? name : name + ext;
+        return name;
+    }
 
+    // Helpers (AI Slop, be warned)
     private static string Sanitize(string name)
     {
         var invalid = Path.GetInvalidFileNameChars();
@@ -274,7 +271,5 @@ Location: {(rock.Location is null ? "N/A" : $"{rock.Location.Latitude}, {rock.Lo
 
         return sb.ToString();
     }
-
-
 }
 

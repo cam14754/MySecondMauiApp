@@ -21,31 +21,26 @@ namespace MySecondMauiApp;
 public partial class AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation, IMediaPicker mediaPicker) : BaseViewModel
 {
 
+
     RockDataService rockDataService = rockDataService;
     IGeolocation geolocation = geolocation;
     IMediaPicker mediaPicker = mediaPicker;
 
-
-
     [ObservableProperty]
-    private List<string> rockTypes =
+    private List<RockType> rockTypes =
     [
-        "Igneous",
-        "Sedimentary",
-        "Metamorphic"
+        RockType.Igneous,
+        RockType.Sedimentary,
+        RockType.Metamorphic
     ];
 
     [ObservableProperty]
-    Rock rock;
-
+    Rock? rock;
 
     public TaskCompletionSource<Rock?>? Completion { get; set; }
 
     public DateTime MinRockDate { get; } = new(1900, 1, 1);
     public DateTime MaxRockDate { get; } = DateTime.Today;
-
-
-
 
     [RelayCommand]
     async Task PickImageAsync()

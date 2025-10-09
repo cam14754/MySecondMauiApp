@@ -184,7 +184,6 @@ public static class RockSpecies
 
 
 }
-
 public enum RockType
 {
     Igneous,

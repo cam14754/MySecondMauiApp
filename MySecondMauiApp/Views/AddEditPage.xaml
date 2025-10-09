@@ -40,7 +40,7 @@
                         </VerticalStackLayout>
                     </Border>
 
-                    <Border Style="{StaticResource FormCardStyle}">
+                    <Border IsVisible="{Binding Rock.HasRockType}" Style="{StaticResource FormCardStyle}">
                         <VerticalStackLayout>
                             <Label
                                 FontAttributes="Bold"
