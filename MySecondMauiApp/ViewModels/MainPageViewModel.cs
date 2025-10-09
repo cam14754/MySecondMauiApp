@@ -16,7 +16,6 @@ using System.Text;
 
 namespace MySecondMauiApp;
 
-
 public partial class MainPageViewModel : BaseViewModel
 {
     private readonly RockDataService rockDataService;
@@ -110,6 +109,11 @@ public partial class MainPageViewModel : BaseViewModel
                 "No Rock Deleted",
                 "Please select a rock to delete.",
                 "OK");
+            return;
+        }
+
+        if (!await Shell.Current.DisplayAlert("Confirm Deletion", $"Are you sure you want to delete {rock.Name}?", "Yes", "No"))
+        {
             return;
         }
 

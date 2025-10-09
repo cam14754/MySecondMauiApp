@@ -42,10 +42,13 @@
             Text="Rename" />
         <Button
             Grid.Column="4"
+            Background="LightSalmon"
+            BorderColor="Red"
             Command="{Binding DeleteRockCommand}"
             CommandParameter="{Binding SelectedRock}"
             Style="{StaticResource TopButton}"
-            Text="Delete" />
+            Text="Delete"
+            TextColor="Red" />
 
         <!--  Line seperator between header and content  -->
         <BoxView
