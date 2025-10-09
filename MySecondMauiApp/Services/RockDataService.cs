@@ -1,92 +1,117 @@
-﻿using System.Text.Json;
+﻿// COPYRIGHT © 2025 ESRI
+//
+// TRADE SECRETS: ESRI PROPRIETARY AND CONFIDENTIAL
+// Unpublished material - all rights reserved under the
+// Copyright Laws of the United States.
+//
+// For additional information, contact:
+// Environmental Systems Research Institute, Inc.
+// Attn: Contracts Dept
+// 380 New York Street
+// Redlands, California, USA 92373
+//
+// email: contracts@esri.com
 
-namespace MySecondMauiApp
+using System.Text.Json;
+
+namespace MySecondMauiApp;
+
+public class RockDataService
 {
-    public class RockDataService
+    public ObservableCollection<Rock> Rocks { get; } = [];
+
+    private readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, "rocks.json");
+
+    public RockDataService()
     {
-        public ObservableCollection<Rock> Rocks { get; } = [];
 
-        private readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, "rocks.json");
+    }
 
-        public RockDataService()
+    public async Task LoadRocksAsync()
+    {
+        if (!File.Exists(filePath))
         {
-
+            return;
         }
 
-        public async Task LoadRocksAsync()
+        var dataStream = File.OpenRead(filePath);
+        var rocksList = await JsonSerializer.DeserializeAsync<List<Rock>>(dataStream);
+        Rocks.Clear();
+        foreach (var rock in rocksList ?? [])
         {
-            if (!File.Exists(filePath))
-                return;
+            Rocks.Add(rock);
+        }
+    }
 
-            var dataStream = File.OpenRead(filePath);
-            var rocksList = await JsonSerializer.DeserializeAsync<List<Rock>>(dataStream);
-            Rocks.Clear();
-            foreach (var rock in rocksList ?? [])
-            {
-                Rocks.Add(rock);
-            }
+    public async Task SaveRocksAsync()
+    {
+        try
+        {
+            using var dataStream = File.Create(filePath);
+            await JsonSerializer.SerializeAsync(dataStream, Rocks.ToList());
+        }
+        catch { }
+    }
+
+    public async Task SaveRock(Rock rock)
+    {
+        if (rock is null)
+        {
+            return;
         }
 
-        public async Task SaveRocksAsync()
+        var existingRock = Rocks.FirstOrDefault(r => r.ID == rock.ID);
+
+        if (existingRock is null)
         {
-            try
-            {
-                using var dataStream = File.Create(filePath);
-                await JsonSerializer.SerializeAsync(dataStream, Rocks.ToList());
-            }
-            catch { }
+            Rocks.Add(rock);
+        }
+        else
+        {
+            existingRock.CopyFrom(rock);
         }
 
-        public async Task SaveRock(Rock rock)
+        await SaveRocksAsync();
+    }
+
+    public async Task<bool> DeleteRockAsync(Rock rock)
+    {
+        if (rock is null)
         {
-            if (rock is null)
-                return;
-
-            var existingRock = Rocks.FirstOrDefault(r => r.ID == rock.ID);
-
-            if (existingRock is null)
-            {
-                Rocks.Add(rock);
-            }
-            else
-            {
-                existingRock.CopyFrom(rock);
-            }
-
-            await SaveRocksAsync();
+            return false;
         }
 
-        public async Task<bool> DeleteRockAsync(Rock rock)
+        if (!Rocks.Remove(rock))
         {
-            if (rock is null)
-                return false;
-
-            if (!Rocks.Remove(rock))
-                return false;
-
-            await SaveRocksAsync();
-            return true;
+            return false;
         }
 
-        public async Task<bool> DuplicateRockAsync(Rock rock)
-        {
-            if (rock is null)
-                return false;
+        await SaveRocksAsync();
+        return true;
+    }
 
-            var newRock = rock.Copy(true);
-            await SaveRock(newRock);
-            await SaveRocksAsync();
-            return true;
+    public async Task<bool> DuplicateRockAsync(Rock rock)
+    {
+        if (rock is null)
+        {
+            return false;
         }
 
-        public async Task<bool> ChangeNameAsync(Rock rock, string name)
-        {
-            if (rock is null || name is null)
-                return false;
+        var newRock = rock.Copy(true);
+        await SaveRock(newRock);
+        await SaveRocksAsync();
+        return true;
+    }
 
-            rock.Name = name;
-            await SaveRocksAsync();
-            return true;
+    public async Task<bool> ChangeNameAsync(Rock rock, string name)
+    {
+        if (rock is null || name is null)
+        {
+            return false;
         }
+
+        rock.Name = name;
+        await SaveRocksAsync();
+        return true;
     }
 }

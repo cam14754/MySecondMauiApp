@@ -45,6 +45,19 @@
                             <Label
                                 FontAttributes="Bold"
                                 Style="{StaticResource LargeLabel}"
+                                Text="Select Rock Species:" />
+                            <Picker
+                                Title="Select a rock"
+                                ItemsSource="{Binding Rock.SpeciesList}"
+                                SelectedItem="{Binding Rock.Species}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Style="{StaticResource FormCardStyle}">
+                        <VerticalStackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource LargeLabel}"
                                 Text="Rock Description:" />
                             <Editor
                                 AutoSize="TextChanges"

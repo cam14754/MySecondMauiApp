@@ -28,5 +28,14 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses your location to tag rocks and show where you found them.</string>
+
+	<key>NSCameraUsageDescription</key>
+	<string>This app uses the camera to take photos of rocks.</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to your photo library to pick existing rock photos.</string>
 </dict>
 </plist>
