@@ -102,13 +102,17 @@
                 return;
             try
             {
-                var location = await geolocation.GetLastKnownLocationAsync();
-                location ??= await geolocation.GetLocationAsync(
-                        new GeolocationRequest
-                        {
-                            DesiredAccuracy = GeolocationAccuracy.Medium,
-                            Timeout = TimeSpan.FromSeconds(30)
-                        });
+                IsBusy = true;
+                Location? location;
+
+
+                location = await geolocation.GetLastKnownLocationAsync();
+                location = await geolocation.GetLocationAsync(
+                    new GeolocationRequest
+                    {
+                        DesiredAccuracy = GeolocationAccuracy.High,
+                        Timeout = TimeSpan.FromSeconds(30)
+                    });
 
                 if (location is null)
                     return;
@@ -128,5 +132,7 @@
                 IsBusy = false;
             }
         }
+
+
     }
 }

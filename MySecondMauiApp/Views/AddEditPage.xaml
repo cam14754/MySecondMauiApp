@@ -8,148 +8,167 @@
     x:DataType="viewmodel:AddEditViewModel"
     BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground},
                                       Dark={StaticResource DarkBackground}}">
-    <Grid RowDefinitions="*,Auto">
-        <ScrollView Grid.Row="0">
-            <VerticalStackLayout>
-                <Border Style="{StaticResource FormCardStyle}">
-                    <VerticalStackLayout>
-                        <Label
-                            FontAttributes="Bold"
-                            Style="{StaticResource LargeLabel}"
-                            Text="Rock Name:" />
-                        <Entry
-                            IsSpellCheckEnabled="False"
-                            IsTextPredictionEnabled="False"
-                            MaxLength="50"
-                            Placeholder="Enter the rock name (Max 50 charecters)"
-                            Text="{Binding Rock.Name}" />
-                    </VerticalStackLayout>
-                </Border>
+    <Grid>
+        <Grid RowDefinitions="*,Auto">
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout>
+                    <Border Style="{StaticResource FormCardStyle}">
+                        <VerticalStackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource LargeLabel}"
+                                Text="Rock Name:" />
+                            <Entry
+                                IsSpellCheckEnabled="False"
+                                IsTextPredictionEnabled="False"
+                                MaxLength="50"
+                                Placeholder="Enter the rock name (Max 50 charecters)"
+                                Text="{Binding Rock.Name}" />
+                        </VerticalStackLayout>
+                    </Border>
 
-                <Border Style="{StaticResource FormCardStyle}">
-                    <VerticalStackLayout>
-                        <Label
-                            FontAttributes="Bold"
-                            Style="{StaticResource LargeLabel}"
-                            Text="Select Rock Type:" />
-                        <Picker
-                            Title="Select a rock"
-                            ItemsSource="{Binding RockTypes}"
-                            SelectedItem="{Binding Rock.Type}" />
-                    </VerticalStackLayout>
-                </Border>
+                    <Border Style="{StaticResource FormCardStyle}">
+                        <VerticalStackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource LargeLabel}"
+                                Text="Select Rock Type:" />
+                            <Picker
+                                Title="Select a rock"
+                                ItemsSource="{Binding RockTypes}"
+                                SelectedItem="{Binding Rock.Type}" />
+                        </VerticalStackLayout>
+                    </Border>
 
-                <Border Style="{StaticResource FormCardStyle}">
-                    <VerticalStackLayout>
-                        <Label
-                            FontAttributes="Bold"
-                            Style="{StaticResource LargeLabel}"
-                            Text="Rock Description:" />
-                        <Editor
-                            AutoSize="TextChanges"
-                            Placeholder="Enter a description of your rock (Max 50 charecters)"
-                            Text="{Binding Rock.Description}" />
-                    </VerticalStackLayout>
-                </Border>
+                    <Border Style="{StaticResource FormCardStyle}">
+                        <VerticalStackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource LargeLabel}"
+                                Text="Rock Description:" />
+                            <Editor
+                                AutoSize="TextChanges"
+                                Placeholder="Enter a description of your rock (Max 50 charecters)"
+                                Text="{Binding Rock.Description}" />
+                        </VerticalStackLayout>
+                    </Border>
 
-                <Border Style="{StaticResource FormCardStyle}">
-                    <VerticalStackLayout>
-                        <Label
-                            FontAttributes="Bold"
-                            Style="{StaticResource LargeLabel}"
-                            Text="Image:" />
-                        <Border
-                            HeightRequest="200"
-                            Style="{StaticResource BaseBorder}"
-                            WidthRequest="200">
-                            <Image
-                                Aspect="AspectFill"
+                    <Border Style="{StaticResource FormCardStyle}">
+                        <VerticalStackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource LargeLabel}"
+                                Text="Image:" />
+                            <Border
                                 HeightRequest="200"
-                                Source="{Binding Rock.ImageString}"
-                                WidthRequest="200" />
-                        </Border>
+                                Style="{StaticResource BaseBorder}"
+                                WidthRequest="200">
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="200"
+                                    Source="{Binding Rock.ImageString}"
+                                    WidthRequest="200" />
+                            </Border>
 
-                        <HorizontalStackLayout WidthRequest="250">
+                            <HorizontalStackLayout WidthRequest="250">
+                                <Button
+                                    Margin="10,10,10,5"
+                                    Command="{Binding PickImageCommand}"
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource ButtonStyle}"
+                                    Text="Pick Image" />
+                                <Button
+                                    Margin="10,10,10,5"
+                                    Command="{Binding TakeImageCommand}"
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource ButtonStyle}"
+                                    Text="Take Image" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Style="{StaticResource FormCardStyle}">
+                        <VerticalStackLayout>
+
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource LargeLabel}"
+                                Text="Where did you find this rock:" />
+                            <Grid
+                                ColumnDefinitions="*, *"
+                                IsVisible="{Binding Rock.HasLocation}"
+                                RowDefinitions="25, 25">
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding Rock.Location.Latitude, StringFormat='Latitude: {0:F3}&#176;'}" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="{Binding Rock.Location.Longitude, StringFormat='Longitude: {0:F3}&#176;'}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="{Binding Rock.Location.Altitude, StringFormat='Altitude: {0:F3} m'}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding Rock.Location.Accuracy, StringFormat='Accuracy: {0:F3} m'}" />
+                            </Grid>
+
                             <Button
-                                Margin="10,10,10,5"
-                                Command="{Binding PickImageCommand}"
-                                HorizontalOptions="Center"
+                                Command="{Binding GetRockLocationCommand}"
                                 Style="{StaticResource ButtonStyle}"
-                                Text="Pick Image" />
-                            <Button
-                                Margin="10,10,10,5"
-                                Command="{Binding TakeImageCommand}"
-                                HorizontalOptions="Center"
-                                Style="{StaticResource ButtonStyle}"
-                                Text="Take Image" />
-                        </HorizontalStackLayout>
-                    </VerticalStackLayout>
-                </Border>
+                                Text="Get rock location" />
+                        </VerticalStackLayout>
+                    </Border>
 
-                <Border Style="{StaticResource FormCardStyle}">
-                    <VerticalStackLayout>
 
-                        <Label
-                            FontAttributes="Bold"
-                            Style="{StaticResource LargeLabel}"
-                            Text="Where did you find this rock:" />
-                        <Grid
-                            ColumnDefinitions="*, *"
-                            IsVisible="{Binding Rock.HasLocation}"
-                            RowDefinitions="25, 25">
+
+                    <Border Style="{StaticResource FormCardStyle}">
+                        <VerticalStackLayout>
                             <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Text="{Binding Rock.Location.Latitude, StringFormat='Latitude: {0:F3}&#186;'}" />
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Text="{Binding Rock.Location.Longitude, StringFormat='Longitude: {0:F3}&#186;'}" />
-                            <Label
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                Text="{Binding Rock.Location.Altitude, StringFormat='Altitude: {0:F3}&#186;'}" />
-                            <Label
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Text="{Binding Rock.Location.Accuracy, StringFormat='Accuracy: {0:F3}&#186;'}" />
-                        </Grid>
+                                FontAttributes="Bold"
+                                Style="{StaticResource LargeLabel}"
+                                Text="When did you find this rock: " />
+                            <DatePicker
+                                Date="{Binding Rock.DateTime}"
+                                MaximumDate="{Binding MaxRockDate}"
+                                MinimumDate="{Binding MinRockDate}" />
+                        </VerticalStackLayout>
+                    </Border>
 
-                        <Button
-                            Command="{Binding GetRockLocationCommand}"
-                            Style="{StaticResource ButtonStyle}"
-                            Text="Get rock location" />
-                    </VerticalStackLayout>
-                </Border>
+                    <Button
+                        Command="{Binding SubmitCommand}"
+                        HeightRequest="60"
+                        Style="{StaticResource ButtonStyle}"
+                        Text="Submit" />
 
+                </VerticalStackLayout>
 
+            </ScrollView>
+            <Label
+                Grid.Row="1"
+                Style="{StaticResource SmallLabel}"
+                Text="{Binding Rock.ID, StringFormat='ID: {0}'}" />
+        </Grid>
 
-                <Border Style="{StaticResource FormCardStyle}">
-                    <VerticalStackLayout>
-                        <Label
-                            FontAttributes="Bold"
-                            Style="{StaticResource LargeLabel}"
-                            Text="When did you find this rock: " />
-                        <DatePicker
-                            Date="{Binding Rock.DateTime}"
-                            MaximumDate="{Binding MaxRockDate}"
-                            MinimumDate="{Binding MinRockDate}" />
-                    </VerticalStackLayout>
-                </Border>
+        <ContentView
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            BackgroundColor="#80000000"
+            InputTransparent="False"
+            IsVisible="{Binding IsBusy}">
 
-                <Button
-                    Command="{Binding SubmitCommand}"
-                    HeightRequest="60"
-                    Style="{StaticResource ButtonStyle}"
-                    Text="Submit" />
-
-            </VerticalStackLayout>
-
-        </ScrollView>
-        <Label
-            Grid.Row="1"
-            Style="{StaticResource SmallLabel}"
-            Text="{Binding Rock.ID, StringFormat='ID: {0}'}" />
-
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer />
+                <PanGestureRecognizer />
+            </ContentView.GestureRecognizers>
+            <ActivityIndicator
+                HorizontalOptions="Center"
+                IsRunning="True"
+                IsVisible="True"
+                VerticalOptions="Center" />
+        </ContentView>
     </Grid>
 </ContentPage>
