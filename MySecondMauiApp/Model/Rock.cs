@@ -3,11 +3,13 @@
 
     public partial class Rock : ObservableObject
     {
-        [ObservableProperty] private string? name = "My Rock";
-        [ObservableProperty] private string? description = "My Rock's Description";
-        [ObservableProperty] private string? type = "Igneous";
-        [ObservableProperty] private string? imageString = "defaultrock.jpg";
-        [ObservableProperty] private Location? location = new(0, 0);
+        [ObservableProperty] private string? name;
+        [ObservableProperty] private string? description;
+        [ObservableProperty] private string? type;
+        [ObservableProperty] private string? imageString;
+        [NotifyPropertyChangedFor(nameof(HasLocation))]
+
+        [ObservableProperty] private Location? location = null;
         [ObservableProperty] private Guid? iD = Guid.NewGuid();
 
         public Rock Copy(bool newID = false)
@@ -34,5 +36,7 @@
             this.Location = other.Location;
             this.ID = other.ID;
         }
+
+        public bool HasLocation => Location is not null;
     }
 }

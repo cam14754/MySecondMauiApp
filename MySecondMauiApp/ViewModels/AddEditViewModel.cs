@@ -4,12 +4,21 @@
     [QueryProperty(nameof(Completion), "Completion")]
 
 
-    public partial class AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation, IMediaPicker mediaPicker) : BaseViewModel
+    public partial class AddEditViewModel : BaseViewModel
     {
 
-        RockDataService rockDataService = rockDataService;
-        IGeolocation geolocation = geolocation;
-        IMediaPicker mediaPicker = mediaPicker;
+        RockDataService rockDataService;
+        IGeolocation geolocation;
+        IMediaPicker mediaPicker;
+
+        public AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation, IMediaPicker mediaPicker)
+        {
+            this.rockDataService = rockDataService;
+            this.geolocation = geolocation;
+            this.mediaPicker = mediaPicker;
+            this.rock ??= new Rock();
+            this.rock.Location ??= new Location(0, 0);
+        }
 
         [ObservableProperty]
         List<string> rockTypes = new()
@@ -21,6 +30,8 @@
 
         [ObservableProperty]
         Rock rock;
+
+
 
         public TaskCompletionSource<Rock?>? Completion { get; set; }
 
@@ -95,8 +106,7 @@
         [RelayCommand]
         async Task GetRockLocation()
         {
-            Debug.WriteLine("Get rock location run");
-            if (IsBusy || rock is null)
+            if (IsBusy || Rock is null)
                 return;
             try
             {
@@ -113,7 +123,7 @@
 
                 Debug.WriteLine($"Found Location: {location.Latitude}, {location.Longitude}");
 
-                rock.Location = location;
+                Rock.Location = location;
             }
             catch (Exception ex)
             {

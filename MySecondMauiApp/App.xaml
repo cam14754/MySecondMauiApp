@@ -93,7 +93,6 @@
             </Style>
 
             <Style x:Key="SelectableCardBorder" TargetType="StackLayout">
-                <!--  remove the invalid TargetName setter here  -->
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <Setter.Value>
                         <VisualStateGroupList>
@@ -136,6 +135,7 @@
                 BasedOn="{StaticResource BaseBorder}"
                 TargetType="Border">
                 <Setter Property="Padding" Value="5" />
+                <Setter Property="MaximumHeightRequest" Value="350" />
             </Style>
 
             <Style

@@ -17,7 +17,7 @@
                             FontAttributes="Bold"
                             Style="{StaticResource LargeLabel}"
                             Text="Rock Name:" />
-                        <Entry Text="{Binding Rock.Name}" />
+                        <Entry Placeholder="Enter the rock name" Text="{Binding Rock.Name}" />
                     </VerticalStackLayout>
                 </Border>
 
@@ -27,7 +27,10 @@
                             FontAttributes="Bold"
                             Style="{StaticResource LargeLabel}"
                             Text="Select Rock Type:" />
-                        <Picker ItemsSource="{Binding RockTypes}" SelectedItem="{Binding Rock.Type}" />
+                        <Picker
+                            Title="Select a rock"
+                            ItemsSource="{Binding RockTypes}"
+                            SelectedItem="{Binding Rock.Type}" />
                     </VerticalStackLayout>
                 </Border>
 
@@ -37,7 +40,10 @@
                             FontAttributes="Bold"
                             Style="{StaticResource LargeLabel}"
                             Text="Rock Description:" />
-                        <Entry ClearButtonVisibility="WhileEditing" Text="{Binding Rock.Description}" />
+                        <Editor
+                            AutoSize="TextChanges"
+                            Placeholder="Enter a description of your rock (Max 300 words)"
+                            Text="{Binding Rock.Description}" />
                     </VerticalStackLayout>
                 </Border>
 
@@ -81,7 +87,7 @@
                             FontAttributes="Bold"
                             Style="{StaticResource LargeLabel}"
                             Text="GeoLocation:" />
-                        <Label Style="{StaticResource MediumLabel}">
+                        <Label IsVisible="{Binding Rock.HasLocation}" Style="{StaticResource MediumLabel}">
                             <Label.Text>
                                 <MultiBinding StringFormat="Lat: {0:F5}, Lon: {1:F5}">
                                     <Binding Path="Rock.Location.Latitude" />
