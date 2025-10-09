@@ -1,7 +1,6 @@
 
 [*.{cs,vb}]
 
-file_header_template = COPYRIGHT © 2025 ESRI\n\nTRADE SECRETS: ESRI PROPRIETARY AND CONFIDENTIAL\nUnpublished material - all rights reserved under the\nCopyright Laws of the United States.\n\nFor additional information, contact:\nEnvironmental Systems Research Institute, Inc.\nAttn: Contracts Dept\n380 New York Street\nRedlands, California, USA 92373\n\nemail: contracts@esri.com
 dotnet_diagnostic.IDE0073.severity = error
 
 #### Naming styles ####
