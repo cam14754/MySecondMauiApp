@@ -73,5 +73,4 @@ public partial class Rock() : ObservableObject
     public bool HasLocation => Location is not null;
 
     public bool HasRockType => Type != null;
-
 }
