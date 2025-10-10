@@ -29,7 +29,6 @@ public static class MauiProgram
         builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
         builder.Services.AddSingleton<IMediaPicker>(MediaPicker.Default);
 
-
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

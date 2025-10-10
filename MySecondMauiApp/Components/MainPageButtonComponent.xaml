@@ -4,11 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:MySecondMauiApp.Components"
+    xmlns:converters="clr-namespace:MySecondMauiApp.Converters"
     x:Name="mainPageButton">
 
     <Border x:DataType="components:MainPageButtonComponent" BindingContext="{Reference mainPageButton}">
         <VerticalStackLayout>
-            <Label Text="{Binding EnteredName}" />
+            <Label Text="{Binding EnteredName, Converter={StaticResource BackwardsConverter}}" />
             <Entry Text="{Binding EnteredName}" />
         </VerticalStackLayout>
     </Border>
