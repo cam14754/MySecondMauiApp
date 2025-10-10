@@ -54,6 +54,11 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
                 return;
             }
 
+            if (Rock is null)
+            {
+                return;
+            }
+
             Rock.ImageString = await SavePhoto(photo);
         }
         catch (Exception ex)
@@ -71,6 +76,11 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
             FileResult? photo = await mediaPicker.CapturePhotoAsync();
 
             if (photo is null)
+            {
+                return;
+            }
+
+            if (Rock is null)
             {
                 return;
             }

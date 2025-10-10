@@ -39,6 +39,7 @@ public partial class Rock() : ObservableObject
             Name = this.Name,
             Description = this.Description,
             Type = this.Type,
+            Species = this.Species,
             ImageString = this.ImageString,
             Location = this.Location,
             ID = newID ? Guid.NewGuid() : this.ID,
@@ -55,6 +56,7 @@ public partial class Rock() : ObservableObject
         this.Name = other.Name;
         this.Description = other.Description;
         this.Type = other.Type;
+        this.Species = other.Species;
         this.ImageString = other.ImageString;
         this.Location = other.Location;
         this.ID = other.ID;
