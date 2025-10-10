@@ -25,8 +25,9 @@ public partial class MainPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-
-        //Unsure how to resolve warning
-        await (BindingContext as MainPageViewModel)?.LoadRocksAsync();
+        if (BindingContext is MainPageViewModel vm)
+        {
+            await vm.LoadRocksAsync();
+        }
     }
 }
