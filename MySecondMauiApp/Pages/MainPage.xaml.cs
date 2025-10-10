@@ -26,6 +26,7 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
 
+        //Unsure how to resolve warning
         await (BindingContext as MainPageViewModel)?.LoadRocksAsync();
     }
 }

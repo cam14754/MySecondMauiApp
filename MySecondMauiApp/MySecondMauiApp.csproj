@@ -67,19 +67,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Components\MainPageButtonComponent.xaml.cs">
+	    <DependentUpon>MainPageButtonComponent.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\AddEditPage.xaml.cs">
 	    <DependentUpon>AddEditPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Components\MainPageButtonComponent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\AddEditPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Components\" />
 	</ItemGroup>
 
 </Project>

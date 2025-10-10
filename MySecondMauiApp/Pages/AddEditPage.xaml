@@ -160,6 +160,7 @@
                     </Border>
 
                     <Button
+                        Margin="10"
                         Command="{Binding SubmitCommand}"
                         HeightRequest="60"
                         Style="{StaticResource ButtonStyle}"

@@ -13,9 +13,10 @@
         BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground},
                                           Dark={StaticResource DarkBackground}}"
         ColumnDefinitions="*, *, *, *, *"
-        RowDefinitions="60, * , Auto">
+        RowDefinitions="60, * , Auto,20">
 
         <!--  Header Buttons  -->
+
         <Button
             Grid.Column="0"
             Command="{Binding EditRockCommand}"
