@@ -3,7 +3,7 @@
     x:Class="MySecondMauiApp.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:components="clr-namespace:MySecondMauiApp.Components"
+    xmlns:controls="clr-namespace:MySecondMauiApp.Controls"
     xmlns:model="clr-namespace:MySecondMauiApp.Model"
     xmlns:viewmodel="clr-namespace:MySecondMauiApp"
     Title="{Binding Title}"
@@ -139,7 +139,7 @@
             Style="{StaticResource BigButton}"
             Text="+" />
 
-        <components:MainPageButtonComponent
+        <controls:ExampleControl
             Grid.Row="2"
             Grid.RowSpan="2"
             Grid.ColumnSpan="5"

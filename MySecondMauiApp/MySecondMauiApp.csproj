@@ -69,8 +69,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Components\MainPageButtonComponent.xaml.cs">
-	    <DependentUpon>MainPageButtonComponent.xaml</DependentUpon>
+	  <Compile Update="Controls\ExampleControl.xaml.cs">
+	    <DependentUpon>ExampleControl.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Pages\AddEditPage.xaml.cs">
 	    <DependentUpon>AddEditPage.xaml</DependentUpon>
@@ -78,7 +78,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Components\MainPageButtonComponent.xaml">
+	  <MauiXaml Update="Controls\ExampleControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\AddEditPage.xaml">

@@ -2,10 +2,11 @@
 // PRIVATE AND CONFIDENTIALL INFORMATION 
 // Please don't steal my code.
 
-namespace MySecondMauiApp.Components;
+namespace MySecondMauiApp.Controls;
+
 using SQuan.Helpers.Maui.Mvvm;
 
-public partial class MainPageButtonComponent : ContentView
+public partial class ExampleControl : ContentView
 {
     // Thanks Stephan 
     [BindableProperty]
@@ -14,9 +15,8 @@ public partial class MainPageButtonComponent : ContentView
     [BindableProperty]
     public partial bool IsBackwards { get; set; } = false;
 
-    public MainPageButtonComponent()
+    public ExampleControl()
     {
         InitializeComponent();
     }
-
 }

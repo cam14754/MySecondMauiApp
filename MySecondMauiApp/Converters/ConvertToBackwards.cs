@@ -8,8 +8,9 @@ public partial class ConvertToBackwards : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        string? name = value.ToString();
-        return name != null ? new string(name.Reverse().ToArray()) : null;
+        string? name = value?.ToString();
+        string reverse = new(name?.Reverse().ToArray());
+        return reverse;
     }
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
