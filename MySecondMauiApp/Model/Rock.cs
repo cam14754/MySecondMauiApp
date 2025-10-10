@@ -30,6 +30,7 @@ public partial class Rock() : ObservableObject
     [ObservableProperty] private Location? location;
 
     [ObservableProperty] private DateTime dateTime = DateTime.Today;
+    [ObservableProperty] private TimeSpan? time;
     [ObservableProperty] private Guid iD = Guid.NewGuid();
 
     public Rock Copy(bool newID = false)
@@ -42,6 +43,7 @@ public partial class Rock() : ObservableObject
             Species = this.Species,
             ImageString = this.ImageString,
             Location = this.Location,
+            Time = this.Time,
             ID = newID ? Guid.NewGuid() : this.ID,
         };
     }
@@ -59,6 +61,7 @@ public partial class Rock() : ObservableObject
         this.Species = other.Species;
         this.ImageString = other.ImageString;
         this.Location = other.Location;
+        this.Time = other.Time;
         this.ID = other.ID;
     }
 

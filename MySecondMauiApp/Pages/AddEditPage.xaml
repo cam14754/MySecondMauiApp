@@ -141,11 +141,21 @@
                             <Label
                                 FontAttributes="Bold"
                                 Style="{StaticResource LargeLabel}"
-                                Text="When did you find this rock: " />
+                                Text="What date did you find this rock: " />
                             <DatePicker
                                 Date="{Binding Rock.DateTime}"
                                 MaximumDate="{Binding MaxRockDate}"
                                 MinimumDate="{Binding MinRockDate}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Style="{StaticResource FormCardStyle}">
+                        <VerticalStackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource LargeLabel}"
+                                Text="When did you find this rock: " />
+                            <TimePicker Time="{Binding Rock.Time}" />
                         </VerticalStackLayout>
                     </Border>
 

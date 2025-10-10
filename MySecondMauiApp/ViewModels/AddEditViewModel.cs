@@ -169,6 +169,4 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
             IsBusy = false;
         }
     }
-
-
 }

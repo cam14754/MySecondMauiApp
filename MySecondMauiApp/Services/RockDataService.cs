@@ -34,7 +34,7 @@ public class RockDataService
             return;
         }
 
-        var dataStream = File.OpenRead(filePath);
+        using var dataStream = File.OpenRead(filePath);
         var rocksList = await JsonSerializer.DeserializeAsync<List<Rock>>(dataStream);
         Rocks.Clear();
         foreach (var rock in rocksList ?? [])
@@ -50,7 +50,10 @@ public class RockDataService
             using var dataStream = File.Create(filePath);
             await JsonSerializer.SerializeAsync(dataStream, Rocks.ToList());
         }
-        catch { }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error in saving rock: {ex.Message}");
+        }
     }
 
     public async Task SaveRock(Rock? rock)
