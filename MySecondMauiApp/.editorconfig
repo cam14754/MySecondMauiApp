@@ -1,6 +1,8 @@
 
 [*.{cs,vb}]
 
+file_header_template = Copyright (c) 2025 Cameron's Rock Company. \nPRIVATE AND CONFIDENTIALL INFORMATION \nPlease don't steal my code.
+
 dotnet_diagnostic.IDE0073.severity = error
 
 #### Naming styles ####

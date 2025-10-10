@@ -135,15 +135,14 @@
             Grid.Row="2"
             Grid.ColumnSpan="5"
             Command="{Binding GoToAddEditPageCommand}"
+            IsVisible="False"
             Style="{StaticResource BigButton}"
             Text="+" />
 
         <components:MainPageButtonComponent
-            Grid.Row="3"
+            Grid.Row="2"
+            Grid.RowSpan="2"
             Grid.ColumnSpan="5"
-            CustomProperty1="{Binding Rocks.Count, StringFormat='{0}'}" />
-
-
+            IsBackwards="True" />
     </Grid>
-
 </ContentPage>

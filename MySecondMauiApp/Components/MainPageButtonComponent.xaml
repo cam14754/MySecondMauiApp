@@ -8,7 +8,8 @@
 
     <Border x:DataType="components:MainPageButtonComponent" BindingContext="{Reference mainPageButton}">
         <VerticalStackLayout>
-            <Label Text="{Binding CustomProperty1}" />
+            <Label Text="{Binding EnteredName}" />
+            <Entry Text="{Binding EnteredName}" />
         </VerticalStackLayout>
     </Border>
 

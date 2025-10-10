@@ -1,45 +1,22 @@
-﻿using SQuan.Helpers.Maui.Mvvm;
+﻿// Copyright (c) 2025 Cameron's Rock Company. 
+// PRIVATE AND CONFIDENTIALL INFORMATION 
+// Please don't steal my code.
 
 namespace MySecondMauiApp.Components;
+using SQuan.Helpers.Maui.Mvvm;
 
 public partial class MainPageButtonComponent : ContentView
 {
-    //public static readonly BindableProperty CustomProperty1Property =
-    //    BindableProperty.Create(
-    //        propertyName: nameof(CustomProperty1),
-    //        returnType: typeof(string),
-    //        declaringType: typeof(MainPageButtonComponent));
-
-    //public string CustomProperty1
-    //{
-    //    get => GetValue(CustomProperty1Property) as string ?? "boo";
-    //    set => SetValue(CustomProperty1Property, value);
-    //}
-
-    //public static readonly BindableProperty CustomProperty2Property =
-    //    BindableProperty.Create(
-    //        propertyName: nameof(CustomProperty2),
-    //        returnType: typeof(int),
-    //        declaringType: typeof(MainPageButtonComponent),
-    //        defaultValue: 69);
-
-    //public int CustomProperty2
-    //{
-    //    get => (int)GetValue(CustomProperty2Property);
-    //    set => SetValue(CustomProperty2Property, value);
-    //}
-
-
+    // Thanks Stephan 
+    [BindableProperty]
+    public partial string EnteredName { get; set; } = "DefaultName";
 
     [BindableProperty]
-    public partial string CustomProperty1 { get; set; } = "boo";
-
-    [BindableProperty]
-    public partial int CustomProperty2 { get; set; } = 69;
-
+    public partial bool IsBackwards { get; set; } = false;
 
     public MainPageButtonComponent()
     {
         InitializeComponent();
     }
+
 }
