@@ -3,6 +3,7 @@
     x:Class="MySecondMauiApp.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:MySecondMauiApp.Components"
     xmlns:model="clr-namespace:MySecondMauiApp.Model"
     xmlns:viewmodel="clr-namespace:MySecondMauiApp"
     Title="{Binding Title}"
@@ -136,6 +137,12 @@
             Command="{Binding GoToAddEditPageCommand}"
             Style="{StaticResource BigButton}"
             Text="+" />
+
+        <components:MainPageButtonComponent
+            Grid.Row="3"
+            Grid.ColumnSpan="5"
+            CustomProperty1="{Binding Rocks.Count, StringFormat='{0}'}" />
+
 
     </Grid>
 
