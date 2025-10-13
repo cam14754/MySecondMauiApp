@@ -7,16 +7,11 @@ using System.Text.Json;
 
 namespace MySecondMauiApp;
 
-public class RockDataService
+public class RockDataService : IRockDataService
 {
-    public ObservableCollection<Rock> Rocks { get; } = [];
+    public ObservableCollection<Rock> Rocks { get; set; } = [];
 
     private readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, "rocks.json");
-
-    public RockDataService()
-    {
-
-    }
 
     public async Task LoadRocksAsync()
     {
@@ -97,7 +92,7 @@ public class RockDataService
         return true;
     }
 
-    public async Task<bool> ChangeNameAsync(Rock rock, string name)
+    public async Task<bool> ChangeRockNameAsync(Rock rock, string name)
     {
         if (rock is null || name is null)
         {

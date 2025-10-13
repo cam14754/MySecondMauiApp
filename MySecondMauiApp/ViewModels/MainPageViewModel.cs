@@ -11,14 +11,14 @@ namespace MySecondMauiApp;
 /// </summary>
 public partial class MainPageViewModel : BaseViewModel
 {
-    private readonly RockDataService rockDataService;
+    private readonly IRockDataService rockDataService;
     private readonly IFileSaver fileSaver;
     /// <summary>
     /// Initializes a new instance of the <see cref="MainPageViewModel"/> class.
     /// </summary>
     /// <param name="rockDataService">Handles load/CRUD operations for <see cref="Rock"/> objects.</param>
     /// <param name="fileSaver">Handles user-initiated file exports.</param>
-    public MainPageViewModel(RockDataService rockDataService, IFileSaver fileSaver)
+    public MainPageViewModel(IRockDataService rockDataService, IFileSaver fileSaver)
     {
         this.rockDataService = rockDataService;
         this.fileSaver = fileSaver;
@@ -112,7 +112,6 @@ public partial class MainPageViewModel : BaseViewModel
         var result = await tcs.Task;
 
         IsBusy = false;
-
     }
 
     /// <summary>
@@ -208,7 +207,7 @@ public partial class MainPageViewModel : BaseViewModel
 
         string? name = await Shell.Current.DisplayPromptAsync("Rename", "Enter new Rock name:");
 
-        if (await rockDataService.ChangeNameAsync(rock, name))
+        if (await rockDataService.ChangeRockNameAsync(rock, name))
         {
             await Shell.Current.DisplayAlert(
                 "Rock Renamed",

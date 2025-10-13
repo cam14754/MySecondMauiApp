@@ -26,7 +26,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
         builder.Services.AddSingleton<IMap>(Map.Default);
-        builder.Services.AddSingleton<RockDataService>();
+        builder.Services.AddSingleton<IRockDataService, RockDataService>();
         builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
         builder.Services.AddSingleton<IMediaPicker>(MediaPicker.Default);
 

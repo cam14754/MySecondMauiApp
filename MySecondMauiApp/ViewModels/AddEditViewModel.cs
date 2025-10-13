@@ -11,9 +11,9 @@ namespace MySecondMauiApp;
 /// </summary>
 [QueryProperty(nameof(SelectedRock), "SelectedRock")]
 [QueryProperty(nameof(Completion), "Completion")]
-public partial class AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation, IMediaPicker mediaPicker) : BaseViewModel
+public partial class AddEditViewModel(IRockDataService rockDataService, IGeolocation geolocation, IMediaPicker mediaPicker) : BaseViewModel
 {
-    readonly RockDataService rockDataService = rockDataService;
+    readonly IRockDataService rockDataService = rockDataService;
     readonly IGeolocation geolocation = geolocation;
     readonly IMediaPicker mediaPicker = mediaPicker;
 
@@ -44,18 +44,13 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
     /// A <see cref="Task"/> that represents the asynchronous operation.
     /// </returns>
     [RelayCommand]
-    async Task PickImageAsync()
+    public async Task PickImageAsync()
     {
         try
         {
             FileResult? photo = await mediaPicker.PickPhotoAsync();
 
-            if (photo is null)
-            {
-                return;
-            }
-
-            if (SelectedRock is null)
+            if (photo is null || SelectedRock is null)
             {
                 return;
             }
