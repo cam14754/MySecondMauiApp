@@ -258,7 +258,7 @@ public partial class MainPageViewModel : BaseViewModel
             My Downloaded Rock!
             ----
             Name: {rock.Name ?? "(empty)"}
-            Type: {(rock.Type is null ? "(empty)" : rock.Type)}
+            Type: {(rock.RockType is null ? "(empty)" : rock.RockType)}
             Description: {rock.Description ?? "(empty)"}
             ID: {rock.ID}
             Location: {(rock.Location is null ? "(empty)" : $"{rock.Location.Latitude}, {rock.Location.Longitude}")}

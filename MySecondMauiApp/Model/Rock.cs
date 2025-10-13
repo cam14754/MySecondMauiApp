@@ -10,9 +10,9 @@ public partial class Rock() : ObservableObject
     [ObservableProperty] private string? name;
     [ObservableProperty] private string? description;
 
-    [NotifyPropertyChangedFor(nameof(SpeciesList))]
+    [NotifyPropertyChangedFor(nameof(RockSpeciesList))]
     [NotifyPropertyChangedFor(nameof(HasRockType))]
-    [ObservableProperty] private RockType? type;
+    [ObservableProperty] private RockTypesEnum? rockType;
 
     [ObservableProperty] private string? species;
     [ObservableProperty] private string? imageString;
@@ -30,7 +30,7 @@ public partial class Rock() : ObservableObject
         {
             Name = this.Name,
             Description = this.Description,
-            Type = this.Type,
+            RockType = this.RockType,
             Species = this.Species,
             ImageString = this.ImageString,
             Location = this.Location,
@@ -49,7 +49,7 @@ public partial class Rock() : ObservableObject
 
         this.Name = other.Name;
         this.Description = other.Description;
-        this.Type = other.Type;
+        this.RockType = other.RockType;
         this.Species = other.Species;
         this.ImageString = other.ImageString;
         this.Location = other.Location;
@@ -58,17 +58,23 @@ public partial class Rock() : ObservableObject
         this.ID = other.ID;
     }
 
+    public List<RockTypesEnum> RockTypesList =>
+    [
+        RockTypesEnum.Igneous,
+        RockTypesEnum.Sedimentary,
+        RockTypesEnum.Metamorphic
+    ];
 
-    public List<string> SpeciesList => this.Type switch
+    public List<string> RockSpeciesList => RockType switch
     {
-        RockType.Igneous => RockSpecies.IgneousRocks,
-        RockType.Sedimentary => RockSpecies.SedimentaryRocks,
-        RockType.Metamorphic => RockSpecies.MetamorphicRocks,
+        RockTypesEnum.Igneous => RockSpecies.IgneousRocks,
+        RockTypesEnum.Sedimentary => RockSpecies.SedimentaryRocks,
+        RockTypesEnum.Metamorphic => RockSpecies.MetamorphicRocks,
         //When Type is null (eg, when the page first loads), return an empty list
         _ => [],
     };
 
     public bool HasLocation => Location is not null;
 
-    public bool HasRockType => Type != null;
+    public bool HasRockType => RockType is not null;
 }

@@ -11,19 +11,9 @@ namespace MySecondMauiApp;
 
 public partial class AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation, IMediaPicker mediaPicker) : BaseViewModel
 {
-
-
     RockDataService rockDataService = rockDataService;
     IGeolocation geolocation = geolocation;
     IMediaPicker mediaPicker = mediaPicker;
-
-    [ObservableProperty]
-    private List<RockType> rockTypes =
-    [
-        RockType.Igneous,
-        RockType.Sedimentary,
-        RockType.Metamorphic
-    ];
 
     [ObservableProperty]
     Rock? selectedRock;

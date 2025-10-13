@@ -35,8 +35,8 @@
                                 Text="Select Rock Type:" />
                             <Picker
                                 Title="Select a rock"
-                                ItemsSource="{Binding RockTypes}"
-                                SelectedItem="{Binding SelectedRock.Type}" />
+                                ItemsSource="{Binding SelectedRock.RockTypesList}"
+                                SelectedItem="{Binding SelectedRock.RockType}" />
                         </VerticalStackLayout>
                     </Border>
 
@@ -48,7 +48,7 @@
                                 Text="Select Rock Species:" />
                             <Picker
                                 Title="Select a rock"
-                                ItemsSource="{Binding SelectedRock.SpeciesList}"
+                                ItemsSource="{Binding SelectedRock.RockSpeciesList}"
                                 SelectedItem="{Binding SelectedRock.Species}" />
                         </VerticalStackLayout>
                     </Border>

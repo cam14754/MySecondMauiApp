@@ -172,10 +172,8 @@ public static class RockSpecies
             "Tectonite",
             "Whiteschist"
        ];
-
-
 }
-public enum RockType
+public enum RockTypesEnum
 {
     Igneous,
     Sedimentary,

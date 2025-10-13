@@ -111,7 +111,7 @@
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <Span FontAttributes="Bold" Text="Rock Type: " />
-                                                    <Span Text="{Binding Type}" />
+                                                    <Span Text="{Binding RockType}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
