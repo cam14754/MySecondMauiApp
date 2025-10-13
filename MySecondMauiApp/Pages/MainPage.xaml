@@ -100,7 +100,7 @@
                                             Aspect="Fill"
                                             HeightRequest="106"
                                             HorizontalOptions="Center"
-                                            Source="{Binding ImageString}"
+                                            Source="{Binding ImagePathString}"
                                             VerticalOptions="Center"
                                             WidthRequest="106" />
                                     </Border>

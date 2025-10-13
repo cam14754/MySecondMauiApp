@@ -5,24 +5,44 @@
 
 namespace MySecondMauiApp;
 
+/// <summary>
+/// ViewModel for the Add/Edit Rock page.
+/// for creating or editing a <see cref="Rock"/>.
+/// </summary>
 [QueryProperty(nameof(SelectedRock), "SelectedRock")]
 [QueryProperty(nameof(Completion), "Completion")]
-
-
 public partial class AddEditViewModel(RockDataService rockDataService, IGeolocation geolocation, IMediaPicker mediaPicker) : BaseViewModel
 {
-    RockDataService rockDataService = rockDataService;
-    IGeolocation geolocation = geolocation;
-    IMediaPicker mediaPicker = mediaPicker;
+    readonly RockDataService rockDataService = rockDataService;
+    readonly IGeolocation geolocation = geolocation;
+    readonly IMediaPicker mediaPicker = mediaPicker;
 
+    /// <summary>
+    /// Gets or sets the selected rock for editing.
+    /// </summary>
     [ObservableProperty]
     Rock? selectedRock;
 
+    /// <summary>
+    /// Gets or sets the completion source for the Add/Edit operation.
+    /// </summary>
+    // TODO: Find a differant way to do this
     public TaskCompletionSource<Rock?>? Completion { get; set; }
 
+    /// <summary>
+    /// Setting the bounds for the Min and Max date pickers
+    /// </summary>
     public DateTime MinRockDate { get; } = new(1900, 1, 1);
     public DateTime MaxRockDate { get; } = DateTime.Today;
 
+
+    /// <summary>
+    /// Asynchronously allows the user to pick an image from their device and assigns the image path to the selected
+    /// rock.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation.
+    /// </returns>
     [RelayCommand]
     async Task PickImageAsync()
     {
@@ -40,7 +60,7 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
                 return;
             }
 
-            SelectedRock.ImageString = await SavePhoto(photo);
+            SelectedRock.ImagePathString = await SavePhoto(photo);
         }
         catch (Exception ex)
         {
@@ -48,7 +68,12 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
         }
     }
 
-
+    /// <summary>
+    /// Asynchronously allows the user to take a photo using their device's camera and assigns the image path to the taken photo.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation.
+    /// </returns>
     [RelayCommand]
     private async Task TakeImageAsync()
     {
@@ -66,7 +91,7 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
                 return;
             }
 
-            SelectedRock.ImageString = await SavePhoto(photo);
+            SelectedRock.ImagePathString = await SavePhoto(photo);
         }
         catch (Exception ex)
         {
@@ -74,6 +99,12 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
         }
     }
 
+    /// <summary>
+    /// Asynchronously saves the selected rock and navigates back to the previous page.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation.
+    /// </returns>
     [RelayCommand]
     public async Task Submit()
     {
@@ -84,11 +115,23 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
         await GoBackAsync();
     }
 
+    /// <summary>
+    /// Asynchronously navigates back to the previous page.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation.
+    /// </returns>
     static public async Task GoBackAsync()
     {
         await Shell.Current.GoToAsync("..", true);
     }
 
+    /// <summary>
+    /// Asynchronously saves the photo taken.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation.
+    /// </returns>
     private async Task<string> SavePhoto(FileResult file)
     {
         string uniqueName = $"img_{Guid.NewGuid()}";
@@ -105,6 +148,13 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
 
         return destPath;
     }
+
+    /// <summary>
+    /// Asynchronously gets the current location of the device and assigns it to the selected rock.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the asynchronous operation.
+    /// </returns>
     [RelayCommand]
     async Task GetRockLocation()
     {

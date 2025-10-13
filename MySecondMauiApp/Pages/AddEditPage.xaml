@@ -79,7 +79,7 @@
                                 <Image
                                     Aspect="AspectFill"
                                     HeightRequest="200"
-                                    Source="{Binding SelectedRock.ImageString}"
+                                    Source="{Binding SelectedRock.ImagePathString}"
                                     WidthRequest="200" />
                             </Border>
 

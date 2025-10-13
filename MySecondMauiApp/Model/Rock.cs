@@ -5,25 +5,70 @@
 
 namespace MySecondMauiApp.Model;
 
+/// <summary> 
+/// Class <c>Rock</c> represents a rock in the rock collection app. 
+/// </summary>
 public partial class Rock() : ObservableObject
 {
+    /// <summary>
+    /// Gets or sets the name of the rock, of type <see cref="string"/>.
+    /// </summary>
     [ObservableProperty] private string? name;
+
+    /// <summary>
+    /// Gets or sets the description of the rock, of type <see cref="string"/>.
+    /// </summary>
     [ObservableProperty] private string? description;
 
+    /// <summary>
+    /// Gets or sets the type of the rock, of type <see cref="RockTypesEnum"/>.
+    /// </summary>
     [NotifyPropertyChangedFor(nameof(RockSpeciesList))]
     [NotifyPropertyChangedFor(nameof(HasRockType))]
     [ObservableProperty] private RockTypesEnum? rockType;
 
+    /// <summary>
+    /// Gets or sets the species of the rock, of type <see cref="string"/>.
+    /// </summary>
     [ObservableProperty] private string? species;
-    [ObservableProperty] private string? imageString;
 
+    /// <summary>
+    /// Gets or sets the path location of the image, of type <see cref="string"/>.
+    /// </summary>
+    [ObservableProperty] private string? imagePathString;
+
+    /// <summary>
+    /// Gets or sets the location of the rock, of type <see cref="Location"/>.
+    /// </summary>
     [NotifyPropertyChangedFor(nameof(HasLocation))]
     [ObservableProperty] private Location? location;
 
+    /// <summary>
+    /// Gets or sets the date the rock was found, of type <see cref="DateTime"/>.
+    /// </summary>
     [ObservableProperty] private DateTime dateTime = DateTime.Today;
+
+    /// <summary>
+    /// Gets or sets the time the rock was found, of type <see cref="TimeSpan"/>.
+    /// </summary>
     [ObservableProperty] private TimeSpan? time;
+
+    /// <summary>
+    /// Gets or sets the unique identifier for the rock, of type <see cref="Guid"/>.
+    /// Has a default value of a <see cref="Guid.NewGuid"/>.
+    /// </summary>
     [ObservableProperty] private Guid iD = Guid.NewGuid();
 
+
+    /// <summary> 
+    /// This method creates a copy of the current <see cref="Rock"/> instance. 
+    /// </summary> 
+    /// <param name="newID"> 
+    /// If true, a new <see cref="Guid"/> will be assigned to the <see cref="ID"/> property. 
+    /// </param> 
+    /// <returns> 
+    /// A new instance of <see cref="Rock"/> with the same property values as the current instance. 
+    /// </returns>
     public Rock Copy(bool newID = false)
     {
         return new Rock()
@@ -32,7 +77,7 @@ public partial class Rock() : ObservableObject
             Description = this.Description,
             RockType = this.RockType,
             Species = this.Species,
-            ImageString = this.ImageString,
+            ImagePathString = this.ImagePathString,
             Location = this.Location,
             DateTime = this.DateTime,
             Time = this.Time,
@@ -40,6 +85,12 @@ public partial class Rock() : ObservableObject
         };
     }
 
+    /// <summary> 
+    /// Copies the properties from another <see cref="Rock"/> instance to this instance. 
+    /// </summary> 
+    /// <param name="other"> 
+    /// The other <see cref="Rock"/> instance from which to copy properties. 
+    /// </param>
     public void CopyFrom(Rock other)
     {
         if (other is null)
@@ -51,13 +102,17 @@ public partial class Rock() : ObservableObject
         this.Description = other.Description;
         this.RockType = other.RockType;
         this.Species = other.Species;
-        this.ImageString = other.ImageString;
+        this.ImagePathString = other.ImagePathString;
         this.Location = other.Location;
         this.DateTime = other.DateTime;
         this.Time = other.Time;
         this.ID = other.ID;
     }
 
+    /// <summary>
+    /// Returns the list of available rock types, from the <see cref="RockTypesEnum"/>.
+    /// </summary>
+    // This should not be marked as static, to maintain the exposure to the view.
     public List<RockTypesEnum> RockTypesList =>
     [
         RockTypesEnum.Igneous,
@@ -65,16 +120,29 @@ public partial class Rock() : ObservableObject
         RockTypesEnum.Metamorphic
     ];
 
-    public List<string> RockSpeciesList => RockType switch
+
+    /// <summary>
+    /// Returns the list of available rock species based on the selected <see cref="RockType"/>.
+    /// </summary>
+    /// <remarks>
+    /// When Type is null (eg, when the page first loads), return an empty list
+    /// </remarks>
+    public IReadOnlyList<string> RockSpeciesList => RockType switch
     {
         RockTypesEnum.Igneous => RockSpecies.IgneousRocks,
         RockTypesEnum.Sedimentary => RockSpecies.SedimentaryRocks,
         RockTypesEnum.Metamorphic => RockSpecies.MetamorphicRocks,
-        //When Type is null (eg, when the page first loads), return an empty list
         _ => [],
     };
 
+
+    /// <summary>
+    /// Returns true if <see cref="Location"/> exists; otherwise, false.
+    /// </summary>
     public bool HasLocation => Location is not null;
 
+    /// <summary>
+    /// Returns true if <see cref="RockType"/> exists; otherwise, false.
+    /// </summary>
     public bool HasRockType => RockType is not null;
 }

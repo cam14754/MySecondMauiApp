@@ -5,9 +5,15 @@
 
 namespace MySecondMauiApp.Model;
 
+/// <summary>
+/// Provides species list for each rock type, depending on the selected <see cref="Rock.RockType"/>
+/// </summary>
+/// <remarks>
+/// The lists are partial, not exhaustive.
+/// </remarks>
 public static class RockSpecies
 {
-    public static List<string> IgneousRocks =
+    public static IReadOnlyList<string> IgneousRocks =
        [
            "Adakite",
             "Agpaitic rock",
@@ -98,7 +104,7 @@ public static class RockSpecies
             "Websterite",
             "Wehrlite"
        ];
-    public static List<string> SedimentaryRocks = [
+    public static IReadOnlyList<string> SedimentaryRocks = [
            "Argillite",
             "Arkose",
             "Banded iron formation",
@@ -139,7 +145,7 @@ public static class RockSpecies
             "Turbidite",
             "Wackestone"
        ];
-    public static List<string> MetamorphicRocks = [
+    public static IReadOnlyList<string> MetamorphicRocks = [
            "Anthracite",
             "Amphibolite",
             "Blueschist",
@@ -173,6 +179,10 @@ public static class RockSpecies
             "Whiteschist"
        ];
 }
+
+/// <summary>
+/// Enumeration of the three main types of rocks.
+/// </summary>
 public enum RockTypesEnum
 {
     Igneous,

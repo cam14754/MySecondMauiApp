@@ -5,12 +5,19 @@
 
 namespace MySecondMauiApp;
 
+/// <summary>
+/// ViewModel for the main list page. Loads, selects, and manages <see cref="Rock"/> items,
+/// and coordinates navigation, duplication, rename, delete, and download actions.
+/// </summary>
 public partial class MainPageViewModel : BaseViewModel
 {
     private readonly RockDataService rockDataService;
     private readonly IFileSaver fileSaver;
-    public ObservableCollection<Rock> Rocks => rockDataService.Rocks;
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MainPageViewModel"/> class.
+    /// </summary>
+    /// <param name="rockDataService">Handles load/CRUD operations for <see cref="Rock"/> objects.</param>
+    /// <param name="fileSaver">Handles user-initiated file exports.</param>
     public MainPageViewModel(RockDataService rockDataService, IFileSaver fileSaver)
     {
         this.rockDataService = rockDataService;
@@ -25,7 +32,12 @@ public partial class MainPageViewModel : BaseViewModel
     Rock? selectedRock;
 
     /// <summary>
-    /// Loads the List of <see cref="Rock"/> from memory
+    /// Gets the collection of available <see cref="Rock"/> objects from the data service.
+    /// </summary>
+    public ObservableCollection<Rock> Rocks => rockDataService.Rocks;
+
+    /// <summary>
+    /// Loads the List of <see cref="Rock"/> objects from memory
     /// </summary>
     [RelayCommand]
     public async Task LoadRocksAsync()
