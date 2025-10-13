@@ -1,6 +1,7 @@
-﻿// Copyright (c) 2025 Cameron's Rock Company. 
-// PRIVATE AND CONFIDENTIALL INFORMATION 
-// Please don't steal my code.
+﻿// SPDX-License-Identifier: Proprietary
+// © 2025 Cameron Strachan, trading as Cameron's Rock Company. All rights reserved.
+// Created by Cameron Strachan.
+// For personal and educational use only.
 
 namespace MySecondMauiApp.Model;
 
@@ -33,6 +34,7 @@ public partial class Rock() : ObservableObject
             Species = this.Species,
             ImageString = this.ImageString,
             Location = this.Location,
+            DateTime = this.DateTime,
             Time = this.Time,
             ID = newID ? Guid.NewGuid() : this.ID,
         };
@@ -51,6 +53,7 @@ public partial class Rock() : ObservableObject
         this.Species = other.Species;
         this.ImageString = other.ImageString;
         this.Location = other.Location;
+        this.DateTime = other.DateTime;
         this.Time = other.Time;
         this.ID = other.ID;
     }

@@ -1,10 +1,11 @@
-﻿// Copyright (c) 2025 Cameron's Rock Company. 
-// PRIVATE AND CONFIDENTIALL INFORMATION 
-// Please don't steal my code.
+﻿// SPDX-License-Identifier: Proprietary
+// © 2025 Cameron Strachan, trading as Cameron's Rock Company. All rights reserved.
+// Created by Cameron Strachan.
+// For personal and educational use only.
 
 namespace MySecondMauiApp;
 
-[QueryProperty(nameof(Rock), "Rock")]
+[QueryProperty(nameof(SelectedRock), "SelectedRock")]
 [QueryProperty(nameof(Completion), "Completion")]
 
 
@@ -25,7 +26,7 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
     ];
 
     [ObservableProperty]
-    Rock? rock;
+    Rock? selectedRock;
 
     public TaskCompletionSource<Rock?>? Completion { get; set; }
 
@@ -44,12 +45,12 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
                 return;
             }
 
-            if (Rock is null)
+            if (SelectedRock is null)
             {
                 return;
             }
 
-            Rock.ImageString = await SavePhoto(photo);
+            SelectedRock.ImageString = await SavePhoto(photo);
         }
         catch (Exception ex)
         {
@@ -70,12 +71,12 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
                 return;
             }
 
-            if (Rock is null)
+            if (SelectedRock is null)
             {
                 return;
             }
 
-            Rock.ImageString = await SavePhoto(photo);
+            SelectedRock.ImageString = await SavePhoto(photo);
         }
         catch (Exception ex)
         {
@@ -86,9 +87,9 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
     [RelayCommand]
     public async Task Submit()
     {
-        await rockDataService.SaveRock(Rock);
+        await rockDataService.SaveRock(SelectedRock);
 
-        Completion?.TrySetResult(Rock);
+        Completion?.TrySetResult(SelectedRock);
 
         await GoBackAsync();
     }
@@ -117,7 +118,7 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
     [RelayCommand]
     async Task GetRockLocation()
     {
-        if (IsBusy || Rock is null)
+        if (IsBusy || SelectedRock is null)
         {
             return;
         }
@@ -146,7 +147,7 @@ public partial class AddEditViewModel(RockDataService rockDataService, IGeolocat
 
             Debug.WriteLine($"Found Location: {location.Latitude}, {location.Longitude}");
 
-            Rock.Location = location;
+            SelectedRock.Location = location;
         }
         catch (Exception ex)
         {

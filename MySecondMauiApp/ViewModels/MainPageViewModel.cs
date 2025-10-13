@@ -1,6 +1,7 @@
-﻿// Copyright (c) 2025 Cameron's Rock Company. 
-// PRIVATE AND CONFIDENTIALL INFORMATION 
-// Please don't steal my code.
+﻿// SPDX-License-Identifier: Proprietary
+// © 2025 Cameron Strachan, trading as Cameron's Rock Company. All rights reserved.
+// Created by Cameron Strachan.
+// For personal and educational use only.
 
 namespace MySecondMauiApp;
 
@@ -17,11 +18,15 @@ public partial class MainPageViewModel : BaseViewModel
         Title = "My Rock Collection!";
     }
 
+    /// <summary>
+    /// The currently selected <see cref="Rock"/> by the user.
+    /// </summary>
     [ObservableProperty]
     Rock? selectedRock;
 
-
-
+    /// <summary>
+    /// Loads the List of <see cref="Rock"/> from memory
+    /// </summary>
     [RelayCommand]
     public async Task LoadRocksAsync()
     {
@@ -46,6 +51,11 @@ public partial class MainPageViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Asynchronously prepares a deep copy of the selected <see cref="Rock"/> for navigates to the <see cref="AddEditPage"/>
+    /// </summary>
+    /// <param name="rock">The <see cref="Rock"/> to be edited</param>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
     [RelayCommand]
     async Task EditRockAsync(Rock? rock)
     {
@@ -63,6 +73,11 @@ public partial class MainPageViewModel : BaseViewModel
         await GoToAddEditPage(rockClone);
     }
 
+    /// <summary>
+    /// Asynchronously navigates to the <see cref="AddEditPage"/> to add a new <see cref="Rock"/> or edit an existing one.
+    /// </summary>
+    /// <param name="rock">The <see cref="Rock"/> to be edited. If <see cref="Rock"/> is null, create a new one</param>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
     [RelayCommand]
     async Task GoToAddEditPage(Rock? rock)
     {
@@ -78,7 +93,7 @@ public partial class MainPageViewModel : BaseViewModel
 
         await Shell.Current.GoToAsync(nameof(AddEditPage), true, new Dictionary<string, object?>
             {
-                {"Rock", rock},
+                {"SelectedRock", rock },
                 {"Completion", tcs }
             });
 
@@ -88,6 +103,11 @@ public partial class MainPageViewModel : BaseViewModel
 
     }
 
+    /// <summary>
+    /// Asynchronously deletes the selected <see cref="Rock"/> after user confirmation.
+    /// </summary>
+    /// <param name="rock">The <see cref="Rock"/> to be deleted.</param>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
     [RelayCommand]
     async Task DeleteRockAsync(Rock? rock)
     {
@@ -124,6 +144,11 @@ public partial class MainPageViewModel : BaseViewModel
 
     }
 
+    /// <summary>
+    /// Asynchronously duplicates the selected <see cref="Rock"/>   .
+    /// </summary>
+    /// <param name="rock">The <see cref="Rock"/> to be duplicated.</param>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
     [RelayCommand]
     async Task DuplicateRockAsync(Rock? rock)
     {
@@ -151,6 +176,12 @@ public partial class MainPageViewModel : BaseViewModel
                 "OK");
         }
     }
+
+    /// <summary>
+    /// Asynchronously renames the selected <see cref="Rock"/>   .
+    /// </summary>
+    /// <param name="rock">The <see cref="Rock"/> to be renamed.</param>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
     [RelayCommand]
     async Task RenameRock(Rock? rock)
     {
@@ -181,6 +212,11 @@ public partial class MainPageViewModel : BaseViewModel
         }
     }
 
+    /// <summary>
+    /// Asynchronously downloads the selected <see cref="Rock"/> as a text file.
+    /// </summary>
+    /// <param name="rock">The <see cref="Rock"/> to be downloaded.</param>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
     [RelayCommand]
     async Task DownloadRockAsync(Rock? rock)
     {
@@ -196,14 +232,18 @@ public partial class MainPageViewModel : BaseViewModel
         await SaveFileAsync(rock, CancellationToken.None);
     }
 
-
+    /// <summary>
+    /// Prompts for a filename and saves a simple text export of the given rock.
+    /// </summary>
+    /// <param name="rock">The rock to export.</param>
+    /// <param name="ct">Cancellation token for the save operation.</param>
     private async Task SaveFileAsync(Rock rock, CancellationToken ct)
     {
         try
         {
             var input = await Shell.Current.DisplayPromptAsync(
-                "Save Rock",
-                "Choose a filename (e.g., my-rock.txt)",
+                title: "Save Rock",
+                message: "Choose a filename (e.g., my-rock.txt)",
                 accept: "Save",
                 cancel: "Cancel",
                 placeholder: $"{Sanitize(rock.Name is null ? "RockName" : rock.Name)}.txt",
@@ -214,14 +254,15 @@ public partial class MainPageViewModel : BaseViewModel
             var fileName = EnsureValidFileName(input.Trim(), ".txt", rock.ID);
 
             // Build content
-            var content =
-$@"My Downloaded Rock!
-----
-Name: {(rock.Name is null ? "Empty" : rock.Name)}
-Type: {(rock.Type is null ? "Empty" : rock.Type)}
-Description: {(rock.Description is null ? "Empty" : rock.Description)}
-ID: {rock.ID}
-Location: {(rock.Location is null ? "Empty" : $"{rock.Location.Latitude}, {rock.Location.Longitude}")}";
+            var content = $"""
+            My Downloaded Rock!
+            ----
+            Name: {rock.Name ?? "(empty)"}
+            Type: {(rock.Type is null ? "(empty)" : rock.Type)}
+            Description: {rock.Description ?? "(empty)"}
+            ID: {rock.ID}
+            Location: {(rock.Location is null ? "(empty)" : $"{rock.Location.Latitude}, {rock.Location.Longitude}")}
+            """;
 
             using var stream = new MemoryStream(Encoding.UTF8.GetBytes(content));
 
@@ -241,6 +282,7 @@ Location: {(rock.Location is null ? "Empty" : $"{rock.Location.Latitude}, {rock.
         }
     }
 
+    // Helpers 
     private static string EnsureValidFileName(string? name, string ext, Guid ID)
     {
         if (string.IsNullOrEmpty(name))
@@ -251,7 +293,7 @@ Location: {(rock.Location is null ? "Empty" : $"{rock.Location.Latitude}, {rock.
         return name;
     }
 
-    // Helpers (AI Slop, be warned)
+    // (AI Slop, be warned)
     private static string Sanitize(string name)
     {
         var invalid = Path.GetInvalidFileNameChars();

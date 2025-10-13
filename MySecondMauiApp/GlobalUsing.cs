@@ -1,6 +1,7 @@
-﻿// Copyright (c) 2025 Cameron's Rock Company. 
-// PRIVATE AND CONFIDENTIALL INFORMATION 
-// Please don't steal my code.
+﻿// SPDX-License-Identifier: Proprietary
+// © 2025 Cameron Strachan, trading as Cameron's Rock Company. All rights reserved.
+// Created by Cameron Strachan.
+// For personal and educational use only.
 
 global using CommunityToolkit.Maui;
 global using CommunityToolkit.Maui.Storage;
