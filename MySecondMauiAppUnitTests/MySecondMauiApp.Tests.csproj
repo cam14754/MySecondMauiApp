@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	 <UseMaui>true</UseMaui>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+	 <PackageReference Include="CommunityToolkit.Maui" Version="12.2.0" />
+	 <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+	 <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.110" />
+	 <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.5" />
+	 <PackageReference Include="SQuan.Helpers.Maui.Mvvm" Version="9.0.22" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MySecondMauiApp\MySecondMauiApp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>
