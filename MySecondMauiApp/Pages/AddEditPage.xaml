@@ -160,12 +160,13 @@
                         </VerticalStackLayout>
                     </Border>
 
+                    <!--  Example custom control, custom property and converter, does not get saved  -->
                     <Border Style="{StaticResource FormCardStyle}">
                         <VerticalStackLayout>
                             <Label
                                 FontAttributes="Bold"
                                 Style="{StaticResource MediumLabel}"
-                                Text="An example custom control, custom property and converter" />
+                                Text="An example custom control, custom property and converter, does not get saved" />
                             <controls:ExampleControl
                                 Grid.Row="2"
                                 Grid.RowSpan="2"
