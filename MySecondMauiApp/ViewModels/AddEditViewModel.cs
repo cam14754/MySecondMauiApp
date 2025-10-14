@@ -18,7 +18,7 @@ public partial class AddEditViewModel(IRockDataService rockDataService, IGeoloca
     readonly IMediaPicker mediaPicker = mediaPicker;
 
     /// <summary>
-    /// Gets or sets the selected rock for editing.
+    /// Gets or sets the selected <see cref="Rock"/> for editing.
     /// </summary>
     [ObservableProperty]
     Rock? selectedRock;
@@ -37,8 +37,7 @@ public partial class AddEditViewModel(IRockDataService rockDataService, IGeoloca
 
 
     /// <summary>
-    /// Asynchronously allows the user to pick an image from their device and assigns the image path to the selected
-    /// rock.
+    /// Asynchronously allows the user to pick an image from their device and assigns the <see cref="Rock.ImagePathString"/> to the selected image."/>
     /// </summary>
     /// <returns>
     /// A <see cref="Task"/> that represents the asynchronous operation.
@@ -64,7 +63,7 @@ public partial class AddEditViewModel(IRockDataService rockDataService, IGeoloca
     }
 
     /// <summary>
-    /// Asynchronously allows the user to take a photo using their device's camera and assigns the image path to the taken photo.
+    /// Asynchronously allows the user to take a photo using their device's camera and assigns the <see cref="Rock.ImagePathString"/> to the photo taken.
     /// </summary>
     /// <returns>
     /// A <see cref="Task"/> that represents the asynchronous operation.
@@ -95,7 +94,7 @@ public partial class AddEditViewModel(IRockDataService rockDataService, IGeoloca
     }
 
     /// <summary>
-    /// Asynchronously saves the selected rock and navigates back to the previous page.
+    /// Asynchronously saves the selected <see cref="Rock"/> and navigates back to the previous page.
     /// </summary>
     /// <returns>
     /// A <see cref="Task"/> that represents the asynchronous operation.
@@ -145,7 +144,7 @@ public partial class AddEditViewModel(IRockDataService rockDataService, IGeoloca
     }
 
     /// <summary>
-    /// Asynchronously gets the current location of the device and assigns it to the selected rock.
+    /// Asynchronously gets the current location of the device and assigns it to the selected <see cref="Rock"/>.
     /// </summary>
     /// <returns>
     /// A <see cref="Task"/> that represents the asynchronous operation.

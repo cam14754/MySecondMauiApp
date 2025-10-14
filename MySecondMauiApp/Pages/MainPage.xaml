@@ -135,14 +135,7 @@
             Grid.Row="2"
             Grid.ColumnSpan="5"
             Command="{Binding GoToAddEditPageCommand}"
-            IsVisible="False"
             Style="{StaticResource BigButton}"
             Text="+" />
-
-        <controls:ExampleControl
-            Grid.Row="2"
-            Grid.RowSpan="2"
-            Grid.ColumnSpan="5"
-            IsBackwards="True" />
     </Grid>
 </ContentPage>

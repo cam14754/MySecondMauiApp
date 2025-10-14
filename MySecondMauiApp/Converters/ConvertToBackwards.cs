@@ -5,6 +5,10 @@
 
 
 namespace MySecondMauiApp.Converters;
+
+/// <summary>
+/// Converter class to reverse a string value.
+/// </summary>
 public partial class ConvertToBackwards : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo? culture)

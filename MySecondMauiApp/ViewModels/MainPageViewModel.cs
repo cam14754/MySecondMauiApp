@@ -6,7 +6,7 @@
 namespace MySecondMauiApp;
 
 /// <summary>
-/// ViewModel for the main list page. Loads, selects, and manages <see cref="Rock"/> items,
+/// ViewModel for the main list page. Loads, selects, and manages <see cref="Rock"/> objects,
 /// and coordinates navigation, duplication, rename, delete, and download actions.
 /// </summary>
 public partial class MainPageViewModel : BaseViewModel
@@ -26,7 +26,7 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     /// <summary>
-    /// The currently selected <see cref="Rock"/> by the user.
+    /// The currently selected <see cref="Rock"/>.
     /// </summary>
     [ObservableProperty]
     Rock? selectedRock;
@@ -39,6 +39,7 @@ public partial class MainPageViewModel : BaseViewModel
     /// <summary>
     /// Loads the List of <see cref="Rock"/> objects from memory
     /// </summary>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
     [RelayCommand]
     public async Task LoadRocksAsync()
     {
@@ -64,7 +65,7 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     /// <summary>
-    /// Asynchronously prepares a deep copy of the selected <see cref="Rock"/> for navigates to the <see cref="AddEditPage"/>
+    /// Prepares a deep copy of the selected <see cref="Rock"/> for navigates to the <see cref="AddEditPage"/>
     /// </summary>
     /// <param name="rock">The <see cref="Rock"/> to be edited</param>
     /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
@@ -88,7 +89,7 @@ public partial class MainPageViewModel : BaseViewModel
     /// <summary>
     /// Asynchronously navigates to the <see cref="AddEditPage"/> to add a new <see cref="Rock"/> or edit an existing one.
     /// </summary>
-    /// <param name="rock">The <see cref="Rock"/> to be edited. If <see cref="Rock"/> is null, create a new one</param>
+    /// <param name="rock">The <see cref="Rock"/> to be edited. If the rock is null, create a new one</param>
     /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
     [RelayCommand]
     async Task GoToAddEditPage(Rock? rock)
@@ -156,7 +157,7 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     /// <summary>
-    /// Asynchronously duplicates the selected <see cref="Rock"/>   .
+    /// Duplicates the selected <see cref="Rock"/>.
     /// </summary>
     /// <param name="rock">The <see cref="Rock"/> to be duplicated.</param>
     /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
@@ -189,7 +190,7 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     /// <summary>
-    /// Asynchronously renames the selected <see cref="Rock"/>   .
+    /// Renames the selected <see cref="Rock"/>.
     /// </summary>
     /// <param name="rock">The <see cref="Rock"/> to be renamed.</param>
     /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
@@ -224,7 +225,7 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     /// <summary>
-    /// Asynchronously downloads the selected <see cref="Rock"/> as a text file.
+    /// Downloads the selected <see cref="Rock"/> as a text file.
     /// </summary>
     /// <param name="rock">The <see cref="Rock"/> to be downloaded.</param>
     /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
@@ -244,7 +245,7 @@ public partial class MainPageViewModel : BaseViewModel
     }
 
     /// <summary>
-    /// Prompts for a filename and saves a simple text export of the given rock.
+    /// Prompts the user for a filename and saves a simple text export of the given rock.
     /// </summary>
     /// <param name="rock">The rock to export.</param>
     /// <param name="ct">Cancellation token for the save operation.</param>

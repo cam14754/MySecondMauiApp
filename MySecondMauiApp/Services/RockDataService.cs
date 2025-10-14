@@ -25,14 +25,14 @@ public class RockDataService : IRockDataService
     private readonly string filePath = Path.Combine(FileSystem.AppDataDirectory, "rocks.json");
 
     /// <summary>
-    /// Loads rocks from persistent storage into the in-memory <see cref="Rocks"/> collection.
+    /// Loads rocks from persistent storage into the <see cref="Rocks"/> collection.
     /// </summary>
     /// <remarks>
-    /// If the backing JSON file does not exist, the method returns without modifying the current collection.
+    /// If the JSON file does not exist, the method returns without modifying the current collection.
     /// Existing items in <see cref="Rocks"/> are cleared before loaded items are added.
     /// Deserialization tolerates a null result (e.g., empty file) and leaves the collection empty.
     /// </remarks>
-    /// <returns>A task representing the asynchronous load operation.</returns>
+    /// <returns>A <see cref="Task"/> representing the asynchronous load operation.</returns>
     /// <exception cref="JsonException">Thrown if the JSON is malformed.</exception>
     /// <exception cref="IOException">Thrown on underlying file access errors.</exception>
     public async Task LoadRocksAsync()
@@ -54,9 +54,6 @@ public class RockDataService : IRockDataService
     /// <summary>
     /// Persists the current <see cref="Rocks"/> collection to disk as JSON.
     /// </summary>
-    /// <remarks>
-    /// Any exception during save is caught and logged via <see cref="Debug.WriteLine(string?)"/>.
-    /// </remarks>
     public async Task SaveRocksAsync()
     {
         try
@@ -99,7 +96,7 @@ public class RockDataService : IRockDataService
     /// Deletes the specified rock from the collection and persists the change.
     /// </summary>
     /// <param name="rock">The rock to delete.</param>
-    /// <returns>True if the rock was removed; otherwise false.</returns>
+    /// <returns><see langword="true"/> if the rock was removed; otherwise <see langword="false"/>.</returns>
     public async Task<bool> DeleteRockAsync(Rock rock)
     {
         if (rock is null)
@@ -120,7 +117,7 @@ public class RockDataService : IRockDataService
     /// Creates a duplicate of the specified rock (with a new <see cref="Guid"/>) and saves the collection.
     /// </summary>
     /// <param name="rock">The rock to duplicate.</param>
-    /// <returns>True if duplication succeeded; otherwise false.</returns>
+    /// <returns><see langword="true"/> if duplication succeeded; otherwise <see langword="false"/>.</returns>
     public async Task<bool> DuplicateRockAsync(Rock rock)
     {
         if (rock is null)
@@ -138,7 +135,7 @@ public class RockDataService : IRockDataService
     /// </summary>
     /// <param name="rock">The target rock.</param>
     /// <param name="name">The new name value.</param>
-    /// <returns>True if the name was changed; otherwise false.</returns>
+    /// <returns><see langword="true"/> if the name was changed; otherwise <see langword="false"/>.</returns>
     public async Task<bool> ChangeRockNameAsync(Rock rock, string name)
     {
         if (rock is null || name is null)

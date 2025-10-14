@@ -3,6 +3,7 @@
     x:Class="MySecondMauiApp.AddEditPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MySecondMauiApp.Controls"
     xmlns:model="clr-namespace:MySecondMauiApp.Model"
     xmlns:viewmodel="clr-namespace:MySecondMauiApp"
     x:DataType="viewmodel:AddEditViewModel"
@@ -156,6 +157,20 @@
                                 Style="{StaticResource LargeLabel}"
                                 Text="When did you find this rock: " />
                             <TimePicker Time="{Binding SelectedRock.Time}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Style="{StaticResource FormCardStyle}">
+                        <VerticalStackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource MediumLabel}"
+                                Text="An example custom control, custom property and converter" />
+                            <controls:ExampleControl
+                                Grid.Row="2"
+                                Grid.RowSpan="2"
+                                Grid.ColumnSpan="5"
+                                IsBackwards="True" />
                         </VerticalStackLayout>
                     </Border>
 

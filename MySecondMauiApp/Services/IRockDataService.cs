@@ -4,7 +4,9 @@
 // For personal and educational use only.
 
 namespace MySecondMauiApp;
-
+/// <summary>
+/// Interface for rock data service, providing methods for managing rock data including loading, saving, deleting, duplicating, and renaming rocks.
+/// </summary>
 public interface IRockDataService
 {
     ObservableCollection<Rock> Rocks { get; set; }

@@ -64,12 +64,15 @@ public partial class Rock() : ObservableObject
     /// This method creates a copy of the current <see cref="Rock"/> instance. 
     /// </summary> 
     /// <param name="newID"> 
-    /// If true, a new <see cref="Guid"/> will be assigned to the <see cref="ID"/> property. 
-    /// </param> 
+    /// If <see langword="true"/>, a new <see cref="Guid"/> will be assigned to the <see cref="ID"/> property; otherwise, the existing ID will be used. 
+    /// </param>
+    /// <remarks>
+    /// Generally is it safer to assign a new ID to the rock, so newID defaults to <see langword="true"/>.
+    /// </remarks>
     /// <returns> 
     /// A new instance of <see cref="Rock"/> with the same property values as the current instance. 
     /// </returns>
-    public Rock Copy(bool newID = false)
+    public Rock Copy(bool newID = true)
     {
         return new Rock()
         {
@@ -112,7 +115,6 @@ public partial class Rock() : ObservableObject
     /// <summary>
     /// Returns the list of available rock types, from the <see cref="RockTypesEnum"/>.
     /// </summary>
-    // This should not be marked as static, to maintain the exposure to the view.
     public List<RockTypesEnum> RockTypesList =>
     [
         RockTypesEnum.Igneous,
