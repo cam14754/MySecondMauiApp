@@ -1,8 +1,9 @@
+using CommunityToolkit.Maui.Storage;
 using MySecondMauiApp;
 
 public static class UnitTestHelpers
 {
-    public static (AddEditViewModel viewModel, IMediaPicker mockMediaPicker, IRockDataService mockDataService, IGeolocation mockGeolocation) GenerateViewModelWithRock()
+    public static (AddEditViewModel viewModel, IMediaPicker mockMediaPicker, IRockDataService mockDataService, IGeolocation mockGeolocation) GenerateAddEditViewModelWithRock()
     {
         var mockDataService = Substitute.For<IRockDataService>();
         var mockMediaPicker = Substitute.For<IMediaPicker>();
@@ -13,6 +14,18 @@ public static class UnitTestHelpers
             SelectedRock = new Rock()
         };
         return (vm, mockMediaPicker, mockDataService, mockGeolocation);
+    }
+
+    public static (MainPageViewModel, IFileSaver, IRockDataService) GenerateMainPageViewModelWithRock()
+    {
+        var mockDataService = Substitute.For<IRockDataService>();
+        var mockFileSaver = Substitute.For<IFileSaver>();
+
+        var vm = new MainPageViewModel(mockDataService, mockFileSaver)
+        {
+            SelectedRock = new Rock()
+        };
+        return (vm, mockFileSaver, mockDataService);
     }
 
     public static FileResult CreateFileResult(object? imagePath, object? contentType)

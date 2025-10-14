@@ -43,7 +43,7 @@ public class RockDataService : IRockDataService
         }
 
         using var dataStream = File.OpenRead(filePath);
-        var rocksList = await JsonSerializer.DeserializeAsync<List<Rock>>(dataStream);
+        List<Rock>? rocksList = await JsonSerializer.DeserializeAsync<List<Rock>>(dataStream);
         Rocks.Clear();
         foreach (var rock in rocksList ?? [])
         {
@@ -130,7 +130,6 @@ public class RockDataService : IRockDataService
 
         var newRock = rock.Copy(true);
         await SaveRock(newRock);
-        await SaveRocksAsync();
         return true;
     }
 
