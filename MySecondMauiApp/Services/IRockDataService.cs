@@ -8,7 +8,6 @@ namespace MySecondMauiApp;
 public interface IRockDataService
 {
     ObservableCollection<Rock> Rocks { get; set; }
-
     Task<bool> ChangeRockNameAsync(Rock rock, string name);
     Task<bool> DeleteRockAsync(Rock rock);
     Task<bool> DuplicateRockAsync(Rock rock);

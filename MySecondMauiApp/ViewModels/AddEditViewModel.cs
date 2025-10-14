@@ -127,7 +127,7 @@ public partial class AddEditViewModel(IRockDataService rockDataService, IGeoloca
     /// <returns>
     /// A <see cref="Task"/> that represents the asynchronous operation.
     /// </returns>
-    private async Task<string> SavePhoto(FileResult file)
+    private static async Task<string> SavePhoto(FileResult file)
     {
         string uniqueName = $"img_{Guid.NewGuid()}";
         string destPath = Path.Combine(FileSystem.AppDataDirectory, uniqueName);
@@ -151,7 +151,7 @@ public partial class AddEditViewModel(IRockDataService rockDataService, IGeoloca
     /// A <see cref="Task"/> that represents the asynchronous operation.
     /// </returns>
     [RelayCommand]
-    async Task GetRockLocation()
+    public async Task GetRockLocation()
     {
         if (IsBusy || SelectedRock is null)
         {
@@ -165,18 +165,16 @@ public partial class AddEditViewModel(IRockDataService rockDataService, IGeoloca
 
 
             location = await geolocation.GetLastKnownLocationAsync();
-            if (location is null)
-            {
-                location = await geolocation.GetLocationAsync(
+            location ??= await geolocation.GetLocationAsync(
                 new GeolocationRequest
                 {
                     DesiredAccuracy = GeolocationAccuracy.High,
                     Timeout = TimeSpan.FromSeconds(30),
                 });
-            }
 
             if (location is null)
             {
+                Debug.WriteLine("Unable to get location.");
                 return;
             }
 

@@ -2,42 +2,45 @@ namespace MySecondMauiApp.Tests;
 
 public class AddEditViewModelTests
 {
-    [Fact]
-    public async Task PickImageAsyncTest()
+
+
+    [Theory]
+    [InlineData(1d, 2d)]
+    [InlineData(0d, 2d)]
+    [InlineData(1d, 0d)]
+    [InlineData(-20d, -20d)]
+    [InlineData(0d, 0d)]
+    public async Task GetRockLocationTests(object? latitude, object? longitude)
     {
         // Arrange
-        var mockDataService = Substitute.For<IRockDataService>();
-        var mockMediaPicker = Substitute.For<IMediaPicker>();
-        var mockGeolocation = Substitute.For<IGeolocation>();
-        var viewModel = new AddEditViewModel(mockDataService, mockGeolocation, mockMediaPicker);
+        var (viewModel, _, _, mockGeolocation) = UnitTestHelpers.GenerateViewModelWithRock();
+#pragma warning disable CS8605 //Unboxing a possibly null value.
+        var loc = new Location((double)latitude, (double)longitude);
 
-        viewModel.SelectedRock = new Rock();
-
-        mockMediaPicker.PickPhotoAsync().Returns(Task.FromResult<FileResult?>(new FileResult("Default.jpg", "")));
+        mockGeolocation.GetLastKnownLocationAsync().Returns(loc);
 
         // Act
-        await viewModel.PickImageAsync();
+        await viewModel.GetRockLocation();
 
         // Assert
-        viewModel.SelectedRock?.ImagePathString?.Should().NotBeNullOrEmpty();
-        viewModel.SelectedRock?.ImagePathString?.Should().Be("NotCorrect");
+        await mockGeolocation.Received(1).GetLastKnownLocationAsync();
+        Assert.Equal(loc, viewModel.SelectedRock?.Location);
+        viewModel.SelectedRock!.Location.Should().NotBeNull();
     }
 
     [Fact]
-    public async Task PickImageAsyncTest_2()
+    public async Task GetRockLocation_GetLastKnownLocationAsync_ReturnsNull()
     {
         // Arrange
-        var mockDataService = Substitute.For<IRockDataService>();
-        var mockMediaPicker = Substitute.For<IMediaPicker>();
-        var mockGeolocation = Substitute.For<IGeolocation>();
-        var viewModel = new AddEditViewModel(mockDataService, mockGeolocation, mockMediaPicker);
-
-        mockMediaPicker.PickPhotoAsync().Returns(Task.FromResult<FileResult?>(new FileResult("Default.jpg", "")));
+        var (viewModel, _, _, mockGeolocation) = UnitTestHelpers.GenerateViewModelWithRock();
+        mockGeolocation.GetLastKnownLocationAsync().Returns((Location?)null);
 
         // Act
-        await viewModel.PickImageAsync();
+        var act = () => viewModel.GetRockLocation();
 
         // Assert
-        viewModel.SelectedRock?.ImagePathString?.Should().NotBeNullOrEmpty();
+        await mockGeolocation.Received(1).GetLastKnownLocationAsync();
+        await mockGeolocation.Received(1).GetLocationAsync();
+        await act.SelectedRock!.Location.Should().BeNull();
     }
 }
