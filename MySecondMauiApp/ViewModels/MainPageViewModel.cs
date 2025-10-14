@@ -81,7 +81,8 @@ public partial class MainPageViewModel : BaseViewModel
             return;
         }
 
-        Rock rockClone = rock.Copy();
+        //Make deep copy with same ID, for referancing back later
+        Rock rockClone = rock.Copy(false);
 
         await GoToAddEditPage(rockClone);
     }
