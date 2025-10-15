@@ -29,7 +29,7 @@ public partial class MainPageViewModel : BaseViewModel
     /// The currently selected <see cref="Rock"/>.
     /// </summary>
     [ObservableProperty]
-    Rock? selectedRock;
+    public partial Rock? SelectedRock { get; set; }
 
     /// <summary>
     /// Gets the collection of available <see cref="Rock"/> objects from the data service.
@@ -55,7 +55,7 @@ public partial class MainPageViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-            await Shell.Current.DisplayAlert("Error", $"Failed to load rocks: {ex.Message}", "OK");
+            await DisplayAlert("Error", $"Failed to load rocks: {ex.Message}", "OK");
         }
         finally
         {
@@ -63,6 +63,14 @@ public partial class MainPageViewModel : BaseViewModel
             IsBusy = false;
         }
     }
+
+
+    //MainPageViewModel.DA = async (string _, string _, string _) => { };
+    /// <summary>
+    /// Extraction of Display Alert
+    /// </summary>
+    public Func<string, string, string, Task> DisplayAlert { get; set; } =
+        (title, message, cancel) => Shell.Current.DisplayAlert(title, message, cancel);
 
     /// <summary>
     /// Prepares a deep copy of the selected <see cref="Rock"/> for navigates to the <see cref="AddEditPage"/>

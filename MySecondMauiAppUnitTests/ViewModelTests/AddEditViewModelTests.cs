@@ -16,7 +16,7 @@ public class AddEditViewModelTests
         var (viewModel, _, _, mockGeolocation) = UnitTestHelpers.GenerateAddEditViewModelWithRock();
 #pragma warning disable CS8605 //Unboxing a possibly null value.
         var loc = new Location((double)latitude, (double)longitude);
-
+#pragma warning restore CS8605
         mockGeolocation.GetLastKnownLocationAsync().Returns(loc);
 
         // Act

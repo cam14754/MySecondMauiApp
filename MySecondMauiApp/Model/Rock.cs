@@ -8,56 +8,57 @@ namespace MySecondMauiApp.Model;
 /// <summary> 
 /// Class <c>Rock</c> represents a rock in the rock collection app. 
 /// </summary>
-public partial class Rock() : ObservableObject
+public partial class Rock : ObservableObject
 {
     /// <summary>
     /// Gets or sets the name of the rock, of type <see cref="string"/>.
     /// </summary>
-    [ObservableProperty] private string? name;
+    [ObservableProperty] public partial string? Name { get; set; }
 
     /// <summary>
     /// Gets or sets the description of the rock, of type <see cref="string"/>.
     /// </summary>
-    [ObservableProperty] private string? description;
+    [ObservableProperty] public partial string? Description { get; set; }
 
     /// <summary>
     /// Gets or sets the type of the rock, of type <see cref="RockTypesEnum"/>.
     /// </summary>
     [NotifyPropertyChangedFor(nameof(RockSpeciesList))]
     [NotifyPropertyChangedFor(nameof(HasRockType))]
-    [ObservableProperty] private RockTypesEnum? rockType;
+    [ObservableProperty] public partial RockTypesEnum? RockType { get; set; }
 
     /// <summary>
     /// Gets or sets the species of the rock, of type <see cref="string"/>.
     /// </summary>
-    [ObservableProperty] private string? species;
+    [ObservableProperty] public partial string? Species { get; set; }
 
     /// <summary>
     /// Gets or sets the path location of the image, of type <see cref="string"/>.
     /// </summary>
-    [ObservableProperty] private string? imagePathString;
+    [ObservableProperty] public partial string? ImagePathString { get; set; }
 
     /// <summary>
     /// Gets or sets the location of the rock, of type <see cref="Location"/>.
     /// </summary>
     [NotifyPropertyChangedFor(nameof(HasLocation))]
-    [ObservableProperty] private Location? location;
+    [ObservableProperty] public partial Location? Location { get; set; }
 
     /// <summary>
     /// Gets or sets the date the rock was found, of type <see cref="DateTime"/>.
     /// </summary>
-    [ObservableProperty] private DateTime dateTime = DateTime.Today;
+    [ObservableProperty] public partial DateTime DateTime { get; set; } = DateTime.Today;
 
     /// <summary>
     /// Gets or sets the time the rock was found, of type <see cref="TimeSpan"/>.
     /// </summary>
-    [ObservableProperty] private TimeSpan? time;
+    [ObservableProperty] public partial TimeSpan? Time { get; set; }
 
     /// <summary>
     /// Gets or sets the unique identifier for the rock, of type <see cref="Guid"/>.
     /// Has a default value of a <see cref="Guid.NewGuid"/>.
     /// </summary>
-    [ObservableProperty] private Guid iD = Guid.NewGuid();
+    [ObservableProperty]
+    public partial Guid ID { get; set; } = Guid.NewGuid();
 
 
     /// <summary> 
